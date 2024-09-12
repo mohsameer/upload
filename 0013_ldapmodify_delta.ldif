@@ -1,0 +1,27 @@
+dn: cn=passwordDefault,ou=policies,dc=ppspar,DC=PPSDMN
+changetype: modify
+replace: pwdLockout
+pwdLockout: FALSE
+
+dn: cn=passwordDefault,ou=policies,dc=ppspar,DC=PPSDMN
+changetype: modify
+delete: pwdMaxFailure
+
+dn: cn=passwordDefault,ou=policies,dc=ppspar,DC=PPSDMN
+changetype: modify
+replace: pwdLockoutDuration
+pwdLockoutDuration: 0
+
+dn: cn=staffPolicy,ou=policies,dc=ppspar,DC=PPSDMN
+changetype: modify
+replace: pwdLockout
+pwdLockout: FALSE
+
+dn: cn=staffPolicy,ou=policies,dc=ppspar,DC=PPSDMN
+changetype: modify
+delete: pwdMaxFailure
+
+dn: cn=staffPolicy,ou=policies,dc=ppspar,DC=PPSDMN
+changetype: modify
+replace: pwdLockoutDuration
+pwdLockoutDuration: 0
