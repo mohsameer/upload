@@ -1,0 +1,3163 @@
+{
+	"info": {
+		"_postman_id": "28b901ff-33f1-4ddb-8b46-d3e872d74980",
+		"name": "Anchor App E2E",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "644079"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"item": [
+				{
+					"name": "Bff Login Initiate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff/backend/login",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"backend",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff/backend/login",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"backend",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.1"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Sep 2023 09:48:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "find user by saId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff/api/user/registration/testpostman/find",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"api",
+								"user",
+								"registration",
+								"testpostman",
+								"find"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff/api/user/registration/testpostman/find",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"api",
+										"user",
+										"registration",
+										"testpostman",
+										"find"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.1"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Sep 2023 09:49:08 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID-ANCHOR=FA5A9C5FE663B388FDA7505636C12BC0; Path=/sso-bff; Secure; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dr\",\n    \"email\": \"ravi.vakati@icrypto.com\",\n    \"givenName\": \"test\",\n    \"familyName\": \"postman\",\n    \"telephoneNumber\": \"+27123456789\",\n    \"emails\": [\n        \"ravi.vakati@icrypto.com\"\n    ],\n    \"mobiles\": [\n        \"+27123456789\"\n    ],\n    \"saID\": \"testpostman\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff/api/user/registration/register",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"api",
+								"user",
+								"registration",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Dr\",\n    \"email\": \"ravi.vakati@icrypto.com\",\n    \"givenName\": \"test\",\n    \"familyName\": \"postman\",\n    \"telephoneNumber\": \"+27123456789\",\n    \"emails\": [\n        \"ravi.vakati@icrypto.com\"\n    ],\n    \"mobiles\": [\n        \"+27123456789\"\n    ],\n    \"saID\": \"testpostman\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff/api/user/registration/register",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"api",
+										"user",
+										"registration",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.1"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Sep 2023 10:01:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "send otp to verify endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff/api/user/notification/send/email/ravi.vakati@icrypto.com/registration",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"api",
+								"user",
+								"notification",
+								"send",
+								"email",
+								"ravi.vakati@icrypto.com",
+								"registration"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff/api/user/notification/send/email/ravi.vakati@icrypto.com/registration",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"api",
+										"user",
+										"notification",
+										"send",
+										"email",
+										"ravi.vakati@icrypto.com",
+										"registration"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.1"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Sep 2023 10:03:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Verify otp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff//api/user/notification/verify/234710",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"",
+								"api",
+								"user",
+								"notification",
+								"verify",
+								"234710"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff//api/user/notification/verify/234710",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"",
+										"api",
+										"user",
+										"notification",
+										"verify",
+										"234710"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.1"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Sep 2023 10:05:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
+				},
+				{
+					"name": "set password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Password@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff//api/user/registration/setPassword",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"",
+								"api",
+								"user",
+								"registration",
+								"setPassword"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"Password@123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff//api/user/registration/setPassword",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"",
+										"api",
+										"user",
+										"registration",
+										"setPassword"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.1"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Sep 2023 10:06:44 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "internal calls",
+			"item": [
+				{
+					"name": "get token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"if (response.access_token ) {",
+									"        postman.setEnvironmentVariable(\"access_token\", response.access_token);",
+									"        tests[\"Get token success\"] = true;",
+									"} else {",
+									"        tests[\"Get token success\"] = false;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "YqkGZNdSyLkJGSw0VJpn2VmOch7MXMQWAc5r2XXC",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "867a06e6-aca8-4431-83ea-3f194f29b8f1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "credMgt:endpoint enrollMfa credMgt:notification",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://qa-oidc.pps.co.za/oidc/restv1/token",
+							"protocol": "https",
+							"host": [
+								"qa-oidc",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"oidc",
+								"restv1",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": \"saID eq \\\"1234506\\\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-sidas.pps.co.za/cred-mgmt/api/user/search/filter",
+							"protocol": "https",
+							"host": [
+								"qa-sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"cred-mgmt",
+								"api",
+								"user",
+								"search",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint - Send OTP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"EMAIL\",\n    \"email\": \"ravi.vakati@icrypto.com\",\n    \"context\": {\n        \"commKind\": \"verification\",\n        \"title\": \"Mr\",\n        \"surname\": \"Ravi\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-sidas.pps.co.za/cred-mgmt/api/endpoint/trigger",
+							"protocol": "https",
+							"host": [
+								"qa-sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"cred-mgmt",
+								"api",
+								"endpoint",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint - verify OTP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiI2NWVmYTcxZC0xNWUyLTQ0OTctODNkYS03NTQ1OTUxNjc2Y2Nfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiI4NjdhMDZlNi1hY2E4LTQ0MzEtODNlYS0zZjE5NGYyOWI4ZjEiLCJ4NXQjUzI1NiI6IiIsInNjb3BlIjpbImNyZWRNZ3Q6bm90aWZpY2F0aW9uIiwiZW5yb2xsTWZhIiwiY3JlZE1ndDplbmRwb2ludCJdLCJpc3MiOiJodHRwczovL3FhLW9pZGMucHBzLmNvLnphIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsImV4cCI6MTY1OTY3OTEzNiwiaWF0IjoxNjU5Njc4ODM2LCJjbGllbnRfaWQiOiI4NjdhMDZlNi1hY2E4LTQ0MzEtODNlYS0zZjE5NGYyOWI4ZjEifQ.Lry71JO7tGbFSH5nOCUI9UM1Drrr2h2SETzpXs-CUeio8rxmyQheAQatC0s09pHlY63syj6Y1QSXWo4iON8kFxA-2YQDLdlnxjs0bhpcPE-M_1NZa3KoYvJFOSXrzDcnT3uV4Oafval5KlLaz-eGHcZxlkRUFIvWDHc7luoNYM2iOJroMGQp_0HT7kFWNQ7VyOzWQqSCDLSiArQnD3_-S323NLe_lo7ZoAC6kxMohd0L60i1mhlMimrxz3iKRlXGjf89v4u3nUtvxQouI5PkSU-Sf8GtRhRiDCf3AtZM9Uq6e1OCrSzY0R_MDI9jERxyvRJoXacBt3IrJ6jIdS5R-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\":\"EMAIL\",\n    \"transactionId\":\"MFA_TRANSCATION_0898e109-d651-457e-8fff-cdcc9a241650\",\n    \"code\":\"052557\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-sidas.pps.co.za/cred-mgmt/api/endpoint/verify",
+							"protocol": "https",
+							"host": [
+								"qa-sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"cred-mgmt",
+								"api",
+								"endpoint",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Endpoint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\":\"49341681-4004-4db2-a24f-4d3cbc6b8961\",\n    \"type\": \"mobile\",\n    \"value\": \"+919986011443\",\n    \"isForCommunication\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-sidas.pps.co.za/cred-mgmt/api/endpoint",
+							"protocol": "https",
+							"host": [
+								"qa-sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"cred-mgmt",
+								"api",
+								"endpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiI2NWVmYTcxZC0xNWUyLTQ0OTctODNkYS03NTQ1OTUxNjc2Y2Nfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiI4NjdhMDZlNi1hY2E4LTQ0MzEtODNlYS0zZjE5NGYyOWI4ZjEiLCJ4NXQjUzI1NiI6IiIsInNjb3BlIjpbImNyZWRNZ3Q6bm90aWZpY2F0aW9uIiwiY3JlZE1ndDp0b2tlbiIsImNyZWRNZ3Q6ZW5kcG9pbnQiXSwiaXNzIjoiaHR0cHM6Ly9xYS1vaWRjLnBwcy5jby56YSIsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJleHAiOjE2NjE4MzQzMjQsImlhdCI6MTY2MTgzNDAyNCwiY2xpZW50X2lkIjoiODY3YTA2ZTYtYWNhOC00NDMxLTgzZWEtM2YxOTRmMjliOGYxIn0.dbK1bV7ymPyGHgELlHfoboVJkmKcwj_dO-vHGWGDvV_xe6T6sBBMdGzznPMxgtNtec9atPj4wBSTMdLaqywg-tjNh0ZxU_KnO1FpYohwEHaXSwrNOnleGFZjlMopSpQSbqRKN2VD_p9wvmBxXSQP1b5zrHurFB8PpMRd0E_7F0wswfP-ppRwrtlJtqU1il7kYvX08wJO5HYNAqojGQT8t_tnmMsZuLKVLSWhsG3QTRoSCKzcfxsY1ODhe9Ry397V9_CxTmf08kPK7LiPVsHxbMJcg5TvqICgm-u9QFihSoa2DbBUhfqO35nDL8xexHtyYdjiPDNOmwozOirvVJfPrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\":\"test\",\n    \"type\":\"sms\",\n    \"tokenData\":{\n        \"msisdn\":\"+27000000000\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-sidas.pps.co.za/cred-mgmt/api/token",
+							"protocol": "https",
+							"host": [
+								"qa-sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"cred-mgmt",
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":\"838e2d2a-629f-4352-ac61-a0eac1f8672a\",\"password\":\"Password@123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qa-sidas.pps.co.za/cred-mgmt/api/password",
+							"protocol": "https",
+							"host": [
+								"qa-sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"cred-mgmt",
+								"api",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Bff Login Initiate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff/backend/login",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"backend",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff/backend/login",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"backend",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.4"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 04:57:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Start oidc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff/oauth2/authorization/oidc",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"oauth2",
+								"authorization",
+								"oidc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "302",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff/oauth2/authorization/oidc",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"oauth2",
+										"authorization",
+										"oidc"
+									]
+								}
+							},
+							"status": "Found",
+							"code": 302,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.4"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 04:55:10 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Location",
+									"value": "https://oidc.pps.co.za/oidc/restv1/authorize?response_type=code&client_id=2e15b236-7d92-46a8-b75a-d66f09344414&scope=openid%20profile%20email%20mobile_phone&state=4ABxbOu_aO_h8GnlSpszk5GVN_Mr2IlsM7KcoVMfIw4%3D&redirect_uri=https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc&nonce=gFGVlTpYhi3bRS1q2EQUxUhq4pFve5St7jkOoSguIjU"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Authorize call",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://oidc.pps.co.za/oidc/restv1/authorize?response_type=code&client_id=2e15b236-7d92-46a8-b75a-d66f09344414&scope=openid%20profile%20email%20mobile_phone&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&redirect_uri=https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M",
+							"protocol": "https",
+							"host": [
+								"oidc",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"oidc",
+								"restv1",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "client_id",
+									"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+								},
+								{
+									"key": "scope",
+									"value": "openid%20profile%20email%20mobile_phone"
+								},
+								{
+									"key": "state",
+									"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc"
+								},
+								{
+									"key": "nonce",
+									"value": "7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "302",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://oidc.pps.co.za/oidc/restv1/authorize?response_type=code&client_id=2e15b236-7d92-46a8-b75a-d66f09344414&scope=openid%20profile%20email%20mobile_phone&state=Kpw9Q5EtJpvadsQt0B5k0zJAH6pEt0ga2z5ONdvGtnk%3D&redirect_uri=https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc&nonce=izEVoXb72z9WWw48AgsXQPJ65egkzCBeyQKYbOUPbmc",
+									"protocol": "https",
+									"host": [
+										"oidc",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"oidc",
+										"restv1",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "client_id",
+											"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+										},
+										{
+											"key": "scope",
+											"value": "openid%20profile%20email%20mobile_phone"
+										},
+										{
+											"key": "state",
+											"value": "Kpw9Q5EtJpvadsQt0B5k0zJAH6pEt0ga2z5ONdvGtnk%3D"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc"
+										},
+										{
+											"key": "nonce",
+											"value": "izEVoXb72z9WWw48AgsXQPJ65egkzCBeyQKYbOUPbmc"
+										}
+									]
+								}
+							},
+							"status": "Moved Temporarily",
+							"code": 302,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 04:59:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Location",
+									"value": "https://oidc.pps.co.za/oidc/authorize.htm?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Kpw9Q5EtJpvadsQt0B5k0zJAH6pEt0ga2z5ONdvGtnk%3D&nonce=izEVoXb72z9WWw48AgsXQPJ65egkzCBeyQKYbOUPbmc&client_id=2e15b236-7d92-46a8-b75a-d66f09344414"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "GCLB=CNnjsPWXqrSL2gE; path=/; HttpOnly; expires=Wed, 30-Aug-2023 05:29:28 GMT"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "\n"
+						}
+					]
+				},
+				{
+					"name": "Authorize.htm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://oidc.pps.co.za/oidc/authorize.htm?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M&client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+							"protocol": "https",
+							"host": [
+								"oidc",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"oidc",
+								"authorize.htm"
+							],
+							"query": [
+								{
+									"key": "scope",
+									"value": "openid+profile+email+mobile_phone"
+								},
+								{
+									"key": "acr_values",
+									"value": "icrypto_auth"
+								},
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc"
+								},
+								{
+									"key": "state",
+									"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+								},
+								{
+									"key": "nonce",
+									"value": "7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M"
+								},
+								{
+									"key": "client_id",
+									"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "authorize.htm",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://oidc.pps.co.za/oidc/authorize.htm?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Kpw9Q5EtJpvadsQt0B5k0zJAH6pEt0ga2z5ONdvGtnk%3D&nonce=izEVoXb72z9WWw48AgsXQPJ65egkzCBeyQKYbOUPbmc&client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+									"protocol": "https",
+									"host": [
+										"oidc",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"oidc",
+										"authorize.htm"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "openid+profile+email+mobile_phone"
+										},
+										{
+											"key": "acr_values",
+											"value": "icrypto_auth"
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc"
+										},
+										{
+											"key": "state",
+											"value": "Kpw9Q5EtJpvadsQt0B5k0zJAH6pEt0ga2z5ONdvGtnk%3D"
+										},
+										{
+											"key": "nonce",
+											"value": "izEVoXb72z9WWw48AgsXQPJ65egkzCBeyQKYbOUPbmc"
+										},
+										{
+											"key": "client_id",
+											"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+										}
+									]
+								}
+							},
+							"status": "Moved Temporarily",
+							"code": 302,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:00:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "org.gluu.i18n.Locale=en; Path=/; Expires=Thu, 29-Aug-2024 05:00:23 GMT; Max-Age=31536000; Secure"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "start_page=None; Path=/; Expires=Wed, 30-Aug-2023 05:05:23 GMT; Max-Age=300; Secure; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "group_session_id=11ac3de1-71d6-4a7b-a99c-3bd72da0a075; Path=/; Secure; HttpOnly; Expires=Fri, 29 Sep 2023 05:00:23 +0000"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_state=6e03e4a1bbb625422319eccb86bf7f86cc0bf6fd65985d833be1d898f9d6366e.5c1d6f95-4e86-4bde-a2d9-8463f2d71d28; Path=/; Secure; Expires=Fri, 29 Sep 2023 05:00:23 +0000"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "opbs=e473cad2-5713-472a-87f7-b42679c98168; Path=/; Secure; Expires=Fri, 29 Sep 2023 05:00:23 +0000"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "rp_origin_id=https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc; Path=/oidc; Secure; HttpOnly; Expires=Fri, 29 Sep 2023 05:00:23 +0000;"
+								},
+								{
+									"key": "Location",
+									"value": "https://oidc.pps.co.za/oidc/login.htm?client_id=2e15b236-7d92-46a8-b75a-d66f09344414"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "login.htm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://oidc.pps.co.za/oidc/login.htm?client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+							"protocol": "https",
+							"host": [
+								"oidc",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"oidc",
+								"login.htm"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "302",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://oidc.pps.co.za/oidc/login.htm?client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+									"protocol": "https",
+									"host": [
+										"oidc",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"oidc",
+										"login.htm"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+										}
+									]
+								}
+							},
+							"status": "Moved Temporarily",
+							"code": 302,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:02:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "x_icrypto_tai=eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJhM2VjNzFlNi1lMTI3LTRmNGQtODliZC1jYzFiMDg5ZmJhZTIiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzcyMzQ0LCJpYXQiOjE2OTMzNzE3NDQsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.V0wOVlliWSw3wS2h7hrSVWybGn9bVSQYVNIVHlnUR-0urFFDbr1te4UDjKInpgdHcqgLZegH-qInklayeEprz07cPYmytKN66hwzoNJp85PHmjj1QSZmofWbBgN7Bls0SfNWORugCbDcqRPIK-eNmQD_Vg7Vbrnj217ZEHaBu6whGNOvF2rPjSzFRTgsMOY5Lv-ueF3zK3qU-I5UCZXBPVZ4F9RYZySBrnUEu_heJLageiqS78HQ29cXyzh_v2k5OqfHFL53DmvM5iGo53LQ7Bx2g9gpRic2twYRqhYpFvjcuSP9eS1Zi4ajKtvJMDfUrKez_CS0-Dxv3hCf4V73GQ; Path=/; Expires=Wed, 30-Aug-2023 05:12:24 GMT; Max-Age=600; Secure; HttpOnly"
+								},
+								{
+									"key": "Location",
+									"value": "https://sso.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJhM2VjNzFlNi1lMTI3LTRmNGQtODliZC1jYzFiMDg5ZmJhZTIiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzcyMzQ0LCJpYXQiOjE2OTMzNzE3NDQsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.V0wOVlliWSw3wS2h7hrSVWybGn9bVSQYVNIVHlnUR-0urFFDbr1te4UDjKInpgdHcqgLZegH-qInklayeEprz07cPYmytKN66hwzoNJp85PHmjj1QSZmofWbBgN7Bls0SfNWORugCbDcqRPIK-eNmQD_Vg7Vbrnj217ZEHaBu6whGNOvF2rPjSzFRTgsMOY5Lv-ueF3zK3qU-I5UCZXBPVZ4F9RYZySBrnUEu_heJLageiqS78HQ29cXyzh_v2k5OqfHFL53DmvM5iGo53LQ7Bx2g9gpRic2twYRqhYpFvjcuSP9eS1Zi4ajKtvJMDfUrKez_CS0-Dxv3hCf4V73GQ"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "tai request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJjNDI4OTNlYi03MjdlLTQ3YjAtODk3Yy00NGI0ZjJmZGYwMjkiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzc5NTA4LCJpYXQiOjE2OTMzNzg5MDgsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.Nw_v2n0r_T-PaHCysvYFXFmVUDwGf2rRmA2TQuUtBXZC-_zjXhYFQ7oSx9MNJLd2lS7Cs_413d3XHsjP2afYee7vmdRLEpiR_VgrF4xEXlK3YX91SHRfJ18QsMBi3YbAuR9ClDq21SYLb8FvPDzGW9unE4RZBv5bhVM3noeHuxy-s6TlBwc4voqgcv_2SL3KSGcZyzU5G4iOIjHqn_aJlmGCwnBMHfZn73pC5KOEdLAMYs95ILHQs8Y46KaV_ZzNuQrJ4nsL7qr4eX13492Z_i10u3Vk6KNU19yyyr9cf6xVE5d6NRFUbqu1xJsbOrnKaTHy6dx2iqIfRTbnelxGvA",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-login",
+								"login"
+							],
+							"query": [
+								{
+									"key": "steps",
+									"value": "ext_auth_user"
+								},
+								{
+									"key": "tai",
+									"value": "eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJjNDI4OTNlYi03MjdlLTQ3YjAtODk3Yy00NGI0ZjJmZGYwMjkiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzc5NTA4LCJpYXQiOjE2OTMzNzg5MDgsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.Nw_v2n0r_T-PaHCysvYFXFmVUDwGf2rRmA2TQuUtBXZC-_zjXhYFQ7oSx9MNJLd2lS7Cs_413d3XHsjP2afYee7vmdRLEpiR_VgrF4xEXlK3YX91SHRfJ18QsMBi3YbAuR9ClDq21SYLb8FvPDzGW9unE4RZBv5bhVM3noeHuxy-s6TlBwc4voqgcv_2SL3KSGcZyzU5G4iOIjHqn_aJlmGCwnBMHfZn73pC5KOEdLAMYs95ILHQs8Y46KaV_ZzNuQrJ4nsL7qr4eX13492Z_i10u3Vk6KNU19yyyr9cf6xVE5d6NRFUbqu1xJsbOrnKaTHy6dx2iqIfRTbnelxGvA"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "tai",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJhM2VjNzFlNi1lMTI3LTRmNGQtODliZC1jYzFiMDg5ZmJhZTIiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzcyMzQ0LCJpYXQiOjE2OTMzNzE3NDQsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.V0wOVlliWSw3wS2h7hrSVWybGn9bVSQYVNIVHlnUR-0urFFDbr1te4UDjKInpgdHcqgLZegH-qInklayeEprz07cPYmytKN66hwzoNJp85PHmjj1QSZmofWbBgN7Bls0SfNWORugCbDcqRPIK-eNmQD_Vg7Vbrnj217ZEHaBu6whGNOvF2rPjSzFRTgsMOY5Lv-ueF3zK3qU-I5UCZXBPVZ4F9RYZySBrnUEu_heJLageiqS78HQ29cXyzh_v2k5OqfHFL53DmvM5iGo53LQ7Bx2g9gpRic2twYRqhYpFvjcuSP9eS1Zi4ajKtvJMDfUrKez_CS0-Dxv3hCf4V73GQ",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-login",
+										"login"
+									],
+									"query": [
+										{
+											"key": "steps",
+											"value": "ext_auth_user"
+										},
+										{
+											"key": "tai",
+											"value": "eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJhM2VjNzFlNi1lMTI3LTRmNGQtODliZC1jYzFiMDg5ZmJhZTIiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzcyMzQ0LCJpYXQiOjE2OTMzNzE3NDQsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.V0wOVlliWSw3wS2h7hrSVWybGn9bVSQYVNIVHlnUR-0urFFDbr1te4UDjKInpgdHcqgLZegH-qInklayeEprz07cPYmytKN66hwzoNJp85PHmjj1QSZmofWbBgN7Bls0SfNWORugCbDcqRPIK-eNmQD_Vg7Vbrnj217ZEHaBu6whGNOvF2rPjSzFRTgsMOY5Lv-ueF3zK3qU-I5UCZXBPVZ4F9RYZySBrnUEu_heJLageiqS78HQ29cXyzh_v2k5OqfHFL53DmvM5iGo53LQ7Bx2g9gpRic2twYRqhYpFvjcuSP9eS1Zi4ajKtvJMDfUrKez_CS0-Dxv3hCf4V73GQ"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.4"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:03:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Last-Modified",
+									"value": "Mon, 28 Aug 2023 19:10:46 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64ecf136-de8\""
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>SSOLogin</title>\n        <base href=\"/sso-login/\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n        <style>@charset \"UTF-8\";:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13, 110, 253;--bs-secondary-rgb:108, 117, 125;--bs-success-rgb:25, 135, 84;--bs-info-rgb:13, 202, 240;--bs-warning-rgb:255, 193, 7;--bs-danger-rgb:220, 53, 69;--bs-light-rgb:248, 249, 250;--bs-dark-rgb:33, 37, 41;--bs-white-rgb:255, 255, 255;--bs-black-rgb:0, 0, 0;--bs-body-color-rgb:33, 37, 41;--bs-body-bg-rgb:255, 255, 255;--bs-font-sans-serif:system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", \"Liberation Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";--bs-font-monospace:SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-bg:#fff}*,*:before,*:after{box-sizing:border-box}@media (prefers-reduced-motion: no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}@font-face{font-family:gotham-book;src:url(GothamPro-Book.1f541d6b616857c6.eot);src:url(GothamPro-Book.1f541d6b616857c6.eot?#iefix) format(\"embedded-opentype\"),url(GothamPro-Book.a47544b09b9f2eb3.woff2) format(\"woff2\"),url(GothamPro-Book.15a159de7a7a921c.woff) format(\"woff\"),url(GothamPro-Book.477f1222752d7d14.ttf) format(\"truetype\"),url(GothamPro-Book.51e44cd1595a496c.svg) format(\"svg\")}@font-face{font-family:gotham;src:url(GothamPro.4370bffa48c71068.eot);src:url(GothamPro.4370bffa48c71068.eot?#iefix) format(\"embedded-opentype\"),url(GothamPro.3184916c785a3912.woff2) format(\"woff2\"),url(GothamPro.30ca22fa55676c41.woff) format(\"woff\"),url(GothamPro.b2a16a80c2d812df.ttf) format(\"truetype\"),url(GothamPro.e54e13e470e28412.svg) format(\"svg\")}html,body{font-family:gotham-book,Arial}html,body{font-size:15px;margin:0;padding:0;position:relative}*{transition:all .5s}</style>\n        <link rel=\"stylesheet\" href=\"styles.64b7a3625c831132.css\" media=\"print\" onload=\"this.media='all'\">\n        <noscript>\n            <link rel=\"stylesheet\" href=\"styles.64b7a3625c831132.css\">\n        </noscript>\n    </head>\n    <body>\n        <app-root></app-root>\n        <script src=\"runtime.0cb56988ea88c355.js\" type=\"module\"></script>\n        <script src=\"polyfills.5fc390051e90fc65.js\" type=\"module\"></script>\n        <script src=\"main.d0999b4d06adca6e.js\" type=\"module\"></script>\n    </body>\n</html>"
+						}
+					]
+				},
+				{
+					"name": "Authn - check username",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJjNDI4OTNlYi03MjdlLTQ3YjAtODk3Yy00NGI0ZjJmZGYwMjkiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzc5NTA4LCJpYXQiOjE2OTMzNzg5MDgsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.Nw_v2n0r_T-PaHCysvYFXFmVUDwGf2rRmA2TQuUtBXZC-_zjXhYFQ7oSx9MNJLd2lS7Cs_413d3XHsjP2afYee7vmdRLEpiR_VgrF4xEXlK3YX91SHRfJ18QsMBi3YbAuR9ClDq21SYLb8FvPDzGW9unE4RZBv5bhVM3noeHuxy-s6TlBwc4voqgcv_2SL3KSGcZyzU5G4iOIjHqn_aJlmGCwnBMHfZn73pC5KOEdLAMYs95ILHQs8Y46KaV_ZzNuQrJ4nsL7qr4eX13492Z_i10u3Vk6KNU19yyyr9cf6xVE5d6NRFUbqu1xJsbOrnKaTHy6dx2iqIfRTbnelxGvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"iautomation\",\"password\":\"\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sidas.pps.co.za/api/authn",
+							"protocol": "https",
+							"host": [
+								"sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"api",
+								"authn"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"iautomation\",\"password\":\"\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sidas.pps.co.za/api/authn",
+									"protocol": "https",
+									"host": [
+										"sidas",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"api",
+										"authn"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:09:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nextSteps\": [\n        \"ext_auth_password\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Authn - check username Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJjNDI4OTNlYi03MjdlLTQ3YjAtODk3Yy00NGI0ZjJmZGYwMjkiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzc5NTA4LCJpYXQiOjE2OTMzNzg5MDgsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.Nw_v2n0r_T-PaHCysvYFXFmVUDwGf2rRmA2TQuUtBXZC-_zjXhYFQ7oSx9MNJLd2lS7Cs_413d3XHsjP2afYee7vmdRLEpiR_VgrF4xEXlK3YX91SHRfJ18QsMBi3YbAuR9ClDq21SYLb8FvPDzGW9unE4RZBv5bhVM3noeHuxy-s6TlBwc4voqgcv_2SL3KSGcZyzU5G4iOIjHqn_aJlmGCwnBMHfZn73pC5KOEdLAMYs95ILHQs8Y46KaV_ZzNuQrJ4nsL7qr4eX13492Z_i10u3Vk6KNU19yyyr9cf6xVE5d6NRFUbqu1xJsbOrnKaTHy6dx2iqIfRTbnelxGvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"iautomation\",\"password\":\"Password@123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sidas.pps.co.za/api/authn",
+							"protocol": "https",
+							"host": [
+								"sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"api",
+								"authn"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"iautomation\",\"password\":\"Password@123\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sidas.pps.co.za/api/authn",
+									"protocol": "https",
+									"host": [
+										"sidas",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"api",
+										"authn"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:25:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nextSteps\": [\n        \"mfa_otp_sms\",\n        \"mfa_otp_email\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "mfa get user options",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJjNDI4OTNlYi03MjdlLTQ3YjAtODk3Yy00NGI0ZjJmZGYwMjkiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzc5NTA4LCJpYXQiOjE2OTMzNzg5MDgsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.Nw_v2n0r_T-PaHCysvYFXFmVUDwGf2rRmA2TQuUtBXZC-_zjXhYFQ7oSx9MNJLd2lS7Cs_413d3XHsjP2afYee7vmdRLEpiR_VgrF4xEXlK3YX91SHRfJ18QsMBi3YbAuR9ClDq21SYLb8FvPDzGW9unE4RZBv5bhVM3noeHuxy-s6TlBwc4voqgcv_2SL3KSGcZyzU5G4iOIjHqn_aJlmGCwnBMHfZn73pC5KOEdLAMYs95ILHQs8Y46KaV_ZzNuQrJ4nsL7qr4eX13492Z_i10u3Vk6KNU19yyyr9cf6xVE5d6NRFUbqu1xJsbOrnKaTHy6dx2iqIfRTbnelxGvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sidas.pps.co.za/mfa/api/mfa/options",
+							"protocol": "https",
+							"host": [
+								"sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"mfa",
+								"api",
+								"mfa",
+								"options"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sidas.pps.co.za/mfa/api/mfa/options",
+									"protocol": "https",
+									"host": [
+										"sidas",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"mfa",
+										"api",
+										"mfa",
+										"options"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:27:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"tokenId\": \"53653902-86ea-4aed-8857-09f552c92963\",\n        \"type\": \"EMAIL\",\n        \"description\": \"icr*******pto.com\",\n        \"isDefault\": false,\n        \"authnSteps\": [\n            \"mfa_otp_email\"\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "mfa trigger email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJjNDI4OTNlYi03MjdlLTQ3YjAtODk3Yy00NGI0ZjJmZGYwMjkiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzc5NTA4LCJpYXQiOjE2OTMzNzg5MDgsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.Nw_v2n0r_T-PaHCysvYFXFmVUDwGf2rRmA2TQuUtBXZC-_zjXhYFQ7oSx9MNJLd2lS7Cs_413d3XHsjP2afYee7vmdRLEpiR_VgrF4xEXlK3YX91SHRfJ18QsMBi3YbAuR9ClDq21SYLb8FvPDzGW9unE4RZBv5bhVM3noeHuxy-s6TlBwc4voqgcv_2SL3KSGcZyzU5G4iOIjHqn_aJlmGCwnBMHfZn73pC5KOEdLAMYs95ILHQs8Y46KaV_ZzNuQrJ4nsL7qr4eX13492Z_i10u3Vk6KNU19yyyr9cf6xVE5d6NRFUbqu1xJsbOrnKaTHy6dx2iqIfRTbnelxGvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tokenId\":\"53653902-86ea-4aed-8857-09f552c92963\",\"authnStep\":\"mfa_otp_email\",\"action\":\"trigger\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sidas.pps.co.za/mfa/api/mfa/trigger",
+							"protocol": "https",
+							"host": [
+								"sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"mfa",
+								"api",
+								"mfa",
+								"trigger"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"tokenId\":\"53653902-86ea-4aed-8857-09f552c92963\",\"authnStep\":\"mfa_otp_email\",\"action\":\"trigger\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sidas.pps.co.za/mfa/api/mfa/trigger",
+									"protocol": "https",
+									"host": [
+										"sidas",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"mfa",
+										"api",
+										"mfa",
+										"trigger"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 05:28:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transactionId\": \"MFA_TRANSCATION_b058f957-f3ed-4381-8bc5-e8b6762154c6\"\n}"
+						}
+					]
+				},
+				{
+					"name": "mfa verify email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJmNzY4NjcxZC03NWI1LTQ4N2ItODFhNC1iOTFkMjI3MzRhNDBfc2lnX3JzMjU2IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOiJodHRwczovL3Nzby5wcHMuY28uemEvc3NvLWxvZ2luL2xvZ2luIiwic3ViIjoidW5rbm93biIsInNjb3BlIjpbImF1dGhuIiwibWZhIl0sImlzcyI6Imh0dHBzOi8vb2lkYy5wcHMuY28uemEiLCJzZXNzaW9uSWQiOiJjNDI4OTNlYi03MjdlLTQ3YjAtODk3Yy00NGI0ZjJmZGYwMjkiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNjkzMzc5NTA4LCJpYXQiOjE2OTMzNzg5MDgsImNsaWVudF9pZCI6IjJlMTViMjM2LTdkOTItNDZhOC1iNzVhLWQ2NmYwOTM0NDQxNCJ9.Nw_v2n0r_T-PaHCysvYFXFmVUDwGf2rRmA2TQuUtBXZC-_zjXhYFQ7oSx9MNJLd2lS7Cs_413d3XHsjP2afYee7vmdRLEpiR_VgrF4xEXlK3YX91SHRfJ18QsMBi3YbAuR9ClDq21SYLb8FvPDzGW9unE4RZBv5bhVM3noeHuxy-s6TlBwc4voqgcv_2SL3KSGcZyzU5G4iOIjHqn_aJlmGCwnBMHfZn73pC5KOEdLAMYs95ILHQs8Y46KaV_ZzNuQrJ4nsL7qr4eX13492Z_i10u3Vk6KNU19yyyr9cf6xVE5d6NRFUbqu1xJsbOrnKaTHy6dx2iqIfRTbnelxGvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transactionId\": \"MFA_TRANSCATION_c5514058-0c09-4579-b69f-02e0ad239e49\",\n    \"authnStep\":\"mfa_otp_email\",\n    \"code\":\"875856\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sidas.pps.co.za/mfa/api/mfa/verify",
+							"protocol": "https",
+							"host": [
+								"sidas",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"mfa",
+								"api",
+								"mfa",
+								"verify"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "mfa verify email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"transactionId\": \"MFA_TRANSCATION_c5514058-0c09-4579-b69f-02e0ad239e49\",\n    \"authnStep\":\"mfa_otp_email\",\n    \"code\":\"875856\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sidas.pps.co.za/mfa/api/mfa/verify",
+									"protocol": "https",
+									"host": [
+										"sidas",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"mfa",
+										"api",
+										"mfa",
+										"verify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 07:04:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nextSteps\": [],\n    \"valid\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Postlogin.htm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://oidc.pps.co.za/oxauth/postlogin.htm?client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+							"protocol": "https",
+							"host": [
+								"oidc",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"oxauth",
+								"postlogin.htm"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "302",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://oidc.pps.co.za/oxauth/postlogin.htm?client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+									"protocol": "https",
+									"host": [
+										"oidc",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"oxauth",
+										"postlogin.htm"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+										}
+									]
+								}
+							},
+							"status": "Moved Temporarily",
+							"code": 302,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 07:05:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Location",
+									"value": "https://oidc.pps.co.za/oidc/authorize.htm?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M&client_id=2e15b236-7d92-46a8-b75a-d66f09344414"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "authorize.htm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://oidc.pps.co.za/oidc/authorize.htm?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M&client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+							"protocol": "https",
+							"host": [
+								"oidc",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"oidc",
+								"authorize.htm"
+							],
+							"query": [
+								{
+									"key": "scope",
+									"value": "openid+profile+email+mobile_phone"
+								},
+								{
+									"key": "acr_values",
+									"value": "icrypto_auth"
+								},
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc"
+								},
+								{
+									"key": "state",
+									"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+								},
+								{
+									"key": "nonce",
+									"value": "7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M"
+								},
+								{
+									"key": "client_id",
+									"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "302",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://oidc.pps.co.za/oidc/authorize.htm?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M&client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+									"protocol": "https",
+									"host": [
+										"oidc",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"oidc",
+										"authorize.htm"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "openid+profile+email+mobile_phone"
+										},
+										{
+											"key": "acr_values",
+											"value": "icrypto_auth"
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc"
+										},
+										{
+											"key": "state",
+											"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+										},
+										{
+											"key": "nonce",
+											"value": "7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M"
+										},
+										{
+											"key": "client_id",
+											"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+										}
+									]
+								}
+							},
+							"status": "Moved Temporarily",
+							"code": 302,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 07:05:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Location",
+									"value": "https://oidc.pps.co.za/oidc/restv1/authorize?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M&client_id=2e15b236-7d92-46a8-b75a-d66f09344414"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "org.gluu.i18n.Locale=en; Path=/; Expires=Thu, 29-Aug-2024 07:05:39 GMT; Max-Age=31536000; Secure"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "group_session_id=11ac3de1-71d6-4a7b-a99c-3bd72da0a075; Path=/; Secure; HttpOnly; Expires=Fri, 29 Sep 2023 07:05:39 +0000"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_state=d22dc9797e72038da49d456de5859e2c213f9352143be500b7421a3c1a57f247.e1dea6bc-5033-4875-87c7-8e4295d8707c; Path=/; Secure; Expires=Fri, 29 Sep 2023 07:05:39 +0000"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "opbs=84d57c86-571c-43e1-8ffb-b9dbc647e7da; Path=/; Secure; Expires=Fri, 29 Sep 2023 07:05:39 +0000"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Authorize",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://oidc.pps.co.za/oidc/restv1/authorize?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M&client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+							"protocol": "https",
+							"host": [
+								"oidc",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"oidc",
+								"restv1",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "scope",
+									"value": "openid+profile+email+mobile_phone"
+								},
+								{
+									"key": "acr_values",
+									"value": "icrypto_auth"
+								},
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc"
+								},
+								{
+									"key": "state",
+									"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+								},
+								{
+									"key": "nonce",
+									"value": "7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M"
+								},
+								{
+									"key": "client_id",
+									"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "302",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://oidc.pps.co.za/oidc/restv1/authorize?scope=openid+profile+email+mobile_phone&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&nonce=7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M&client_id=2e15b236-7d92-46a8-b75a-d66f09344414",
+									"protocol": "https",
+									"host": [
+										"oidc",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"oidc",
+										"restv1",
+										"authorize"
+									],
+									"query": [
+										{
+											"key": "scope",
+											"value": "openid+profile+email+mobile_phone"
+										},
+										{
+											"key": "acr_values",
+											"value": "icrypto_auth"
+										},
+										{
+											"key": "response_type",
+											"value": "code"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https%3A%2F%2Fsso.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc"
+										},
+										{
+											"key": "state",
+											"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+										},
+										{
+											"key": "nonce",
+											"value": "7kKyONQntj5ORkUwsod6Mj8AOX6k8kv8_sE6xFqho1M"
+										},
+										{
+											"key": "client_id",
+											"value": "2e15b236-7d92-46a8-b75a-d66f09344414"
+										}
+									]
+								}
+							},
+							"status": "Moved Temporarily",
+							"code": 302,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 07:07:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Location",
+									"value": "https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc?code=11ba0364-790f-4580-af64-2107aff07365&acr_values=icrypto_auth&scope=openid+mobile_phone+profile+email&session_id=11ac3de1-71d6-4a7b-a99c-3bd72da0a075&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&session_state=d22dc9797e72038da49d456de5859e2c213f9352143be500b7421a3c1a57f247.e1dea6bc-5033-4875-87c7-8e4295d8707c"
+								},
+								{
+									"key": "Server",
+									"value": "oidc"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "\n"
+						}
+					]
+				},
+				{
+					"name": "oidc code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc?code=11ba0364-790f-4580-af64-2107aff07365&acr_values=icrypto_auth&scope=openid+mobile_phone+profile+email&session_id=11ac3de1-71d6-4a7b-a99c-3bd72da0a075&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&session_state=d22dc9797e72038da49d456de5859e2c213f9352143be500b7421a3c1a57f247.e1dea6bc-5033-4875-87c7-8e4295d8707c",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-bff",
+								"login",
+								"oauth2",
+								"code",
+								"oidc"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "11ba0364-790f-4580-af64-2107aff07365"
+								},
+								{
+									"key": "acr_values",
+									"value": "icrypto_auth"
+								},
+								{
+									"key": "scope",
+									"value": "openid+mobile_phone+profile+email"
+								},
+								{
+									"key": "session_id",
+									"value": "11ac3de1-71d6-4a7b-a99c-3bd72da0a075"
+								},
+								{
+									"key": "state",
+									"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+								},
+								{
+									"key": "session_state",
+									"value": "d22dc9797e72038da49d456de5859e2c213f9352143be500b7421a3c1a57f247.e1dea6bc-5033-4875-87c7-8e4295d8707c"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "302",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-bff/login/oauth2/code/oidc?code=11ba0364-790f-4580-af64-2107aff07365&acr_values=icrypto_auth&scope=openid+mobile_phone+profile+email&session_id=11ac3de1-71d6-4a7b-a99c-3bd72da0a075&state=Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D&session_state=d22dc9797e72038da49d456de5859e2c213f9352143be500b7421a3c1a57f247.e1dea6bc-5033-4875-87c7-8e4295d8707c",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-bff",
+										"login",
+										"oauth2",
+										"code",
+										"oidc"
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "11ba0364-790f-4580-af64-2107aff07365"
+										},
+										{
+											"key": "acr_values",
+											"value": "icrypto_auth"
+										},
+										{
+											"key": "scope",
+											"value": "openid+mobile_phone+profile+email"
+										},
+										{
+											"key": "session_id",
+											"value": "11ac3de1-71d6-4a7b-a99c-3bd72da0a075"
+										},
+										{
+											"key": "state",
+											"value": "Zrk_8eTeg4CeXbchZhIF1MdZVzRNaCB_yfdNGJzlm7U%3D"
+										},
+										{
+											"key": "session_state",
+											"value": "d22dc9797e72038da49d456de5859e2c213f9352143be500b7421a3c1a57f247.e1dea6bc-5033-4875-87c7-8e4295d8707c"
+										}
+									]
+								}
+							},
+							"status": "Found",
+							"code": 302,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.4"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 07:08:02 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Location",
+									"value": "/sso-login/error"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Dashboard Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sso.pps.co.za/sso-login/insession/post-login-dashboard",
+							"protocol": "https",
+							"host": [
+								"sso",
+								"pps",
+								"co",
+								"za"
+							],
+							"path": [
+								"sso-login",
+								"insession",
+								"post-login-dashboard"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://sso.pps.co.za/sso-login/insession/post-login-dashboard",
+									"protocol": "https",
+									"host": [
+										"sso",
+										"pps",
+										"co",
+										"za"
+									],
+									"path": [
+										"sso-login",
+										"insession",
+										"post-login-dashboard"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.23.4"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Aug 2023 07:09:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Last-Modified",
+									"value": "Mon, 28 Aug 2023 19:10:46 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64ecf136-de8\""
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "frame-ancestors sso.pps.co.za"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>SSOLogin</title>\n        <base href=\"/sso-login/\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n        <style>@charset \"UTF-8\";:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13, 110, 253;--bs-secondary-rgb:108, 117, 125;--bs-success-rgb:25, 135, 84;--bs-info-rgb:13, 202, 240;--bs-warning-rgb:255, 193, 7;--bs-danger-rgb:220, 53, 69;--bs-light-rgb:248, 249, 250;--bs-dark-rgb:33, 37, 41;--bs-white-rgb:255, 255, 255;--bs-black-rgb:0, 0, 0;--bs-body-color-rgb:33, 37, 41;--bs-body-bg-rgb:255, 255, 255;--bs-font-sans-serif:system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", \"Liberation Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";--bs-font-monospace:SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-bg:#fff}*,*:before,*:after{box-sizing:border-box}@media (prefers-reduced-motion: no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}@font-face{font-family:gotham-book;src:url(GothamPro-Book.1f541d6b616857c6.eot);src:url(GothamPro-Book.1f541d6b616857c6.eot?#iefix) format(\"embedded-opentype\"),url(GothamPro-Book.a47544b09b9f2eb3.woff2) format(\"woff2\"),url(GothamPro-Book.15a159de7a7a921c.woff) format(\"woff\"),url(GothamPro-Book.477f1222752d7d14.ttf) format(\"truetype\"),url(GothamPro-Book.51e44cd1595a496c.svg) format(\"svg\")}@font-face{font-family:gotham;src:url(GothamPro.4370bffa48c71068.eot);src:url(GothamPro.4370bffa48c71068.eot?#iefix) format(\"embedded-opentype\"),url(GothamPro.3184916c785a3912.woff2) format(\"woff2\"),url(GothamPro.30ca22fa55676c41.woff) format(\"woff\"),url(GothamPro.b2a16a80c2d812df.ttf) format(\"truetype\"),url(GothamPro.e54e13e470e28412.svg) format(\"svg\")}html,body{font-family:gotham-book,Arial}html,body{font-size:15px;margin:0;padding:0;position:relative}*{transition:all .5s}</style>\n        <link rel=\"stylesheet\" href=\"styles.64b7a3625c831132.css\" media=\"print\" onload=\"this.media='all'\">\n        <noscript>\n            <link rel=\"stylesheet\" href=\"styles.64b7a3625c831132.css\">\n        </noscript>\n    </head>\n    <body>\n        <app-root></app-root>\n        <script src=\"runtime.0cb56988ea88c355.js\" type=\"module\"></script>\n        <script src=\"polyfills.5fc390051e90fc65.js\" type=\"module\"></script>\n        <script src=\"main.d0999b4d06adca6e.js\" type=\"module\"></script>\n    </body>\n</html>"
+						}
+					]
+				}
+			]
+		}
+	]
+}

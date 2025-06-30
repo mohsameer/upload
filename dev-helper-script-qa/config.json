@@ -1,0 +1,22 @@
+{
+  "OIDC_VERSION": "oidcv2",
+  "OIDC_URL": "https://oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "lift-bff",
+      "CLIENT_ID": "liftbff-213s-29hh-10gd-s18531064242",
+      "CLIENT_SECRET": "bfd9f9ce-27c3-4721-888e-4863a700b881",
+      "USERNAME": "cjulius",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://pro-fit.pps.co.za/pro-fit/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_post"
+    }
+  ]
+}

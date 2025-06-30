@@ -1,0 +1,22 @@
+{
+  "OIDC_VERSION": "oidcv2",
+  "OIDC_URL": "https://oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "Sparkle-Namibia",
+      "CLIENT_ID": "1namprod-k287-1945-5jy9-8276c36g1276",
+      "CLIENT_SECRET": "19dd0e6e-f9e9-4f01-a3b1-9942cf01991c",
+      "USERNAME": "fhandura",
+      "PASSWORD": "P@ssword12",
+      "REDIRECT_URL": "https://portal.ppsisecure.com.na/signin-oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_post"
+    }
+  ]
+}

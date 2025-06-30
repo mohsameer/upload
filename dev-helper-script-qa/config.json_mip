@@ -1,0 +1,22 @@
+{
+  "OIDC_VERSION": "oidcv2",
+  "OIDC_URL": "https://oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "Sparkle-mip",
+      "CLIENT_ID": "mipprd-e507-6756-3cd4-34l5c36g8838",
+      "CLIENT_SECRET": "be26ac8d-8a79-4215-a32b-28dae11a5f7f",
+      "USERNAME": "cjulius",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://pro-flow.ppsdmn.co.za/web/run.w?run=login",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_post"
+    }
+  ]
+}
