@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://qa-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "justblend-qa",
+      "CLIENT_ID": "justblend-9694-34ds-1kl0-36rf9k0",
+      "CLIENT_SECRET": "5e3aa299-fc89-4107-b274-286b5e4b7152",
+      "USERNAME": "cjulius",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://qa-blender-pps.justapps.co.za/signin-oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}

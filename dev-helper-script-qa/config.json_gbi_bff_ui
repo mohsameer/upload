@@ -1,0 +1,22 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://qa-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "gbi-bff-ui",
+      "CLIENT_ID": "gbi-bff-ui-9854-3aes-5yq9-43fdg5",
+      "CLIENT_SECRET": "4d48dbe0-6c7f-4751-9e91-c1fe94ee382d",
+      "USERNAME": "vyyhyppys1",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://sso-qa.pps.co.za/gbi/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "offline_access",
+        "gbi",
+        "profile"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}

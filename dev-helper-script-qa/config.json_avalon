@@ -1,0 +1,24 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://qa-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
+  "MFA_URL": "https://qa-sidas.pps.co.za/mfa/api/mfa",
+  "USE_CASES": [
+    {
+      "NAME": "Avalon",
+      "CLIENT_ID": "32af4932-237e-418c-88f1-29cd2b1910d9",
+      "CLIENT_SECRET": "GyhRVIrRWPJmttpCcIw2mX5PABVR7jcXnyZSuUVZ",
+      "USERNAME": "bsithole1",
+      "PASSWORD": "Icrypto1234@#",
+      "REDIRECT_URL": "https://localhost:8061/oidc/ppsinterim",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+	"profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_post"
+    }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://qa-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "kafka",
+      "CLIENT_ID": "1kafka-l536-6734-9kh7-1019r66p2873",
+      "CLIENT_SECRET": "72ab2592-fe68-464c-8e2e-9f226a9fc6d5",
+      "USERNAME": "vyyhyppys1",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://sso-qa.pps.co.za/kafka-error-handler/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}

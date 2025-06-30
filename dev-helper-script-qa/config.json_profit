@@ -1,0 +1,25 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://qa-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
+  "MFA_URL": "https://qa-sidas.pps.co.za/mfa/api/mfa",
+  "USE_CASES": [
+    {
+      "NAME": "Profit",
+      "CLIENT_ID": "66bebc3a-30c5-4053-b692-86bf7974833f",
+      "CLIENT_SECRET": "cdR3WvZyAjUoYv2zUppmOv2yuZAIyYFZ8Ew7dkwr",
+      "USERNAME": "mmahoko",
+      "PASSWORD": "Password1!",
+      "MFA_TYPE": "email",
+      "REDIRECT_URL": "https://sso-qa.pps.co.za/pro-fit/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://qa-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "ushur",
+      "CLIENT_ID": "1usher-k768-1243-2hj8-1145s27u2324",
+      "CLIENT_SECRET": "35aefa2b-8d47-4747-b974-ef825f0a66a2",
+      "USERNAME": "vyyhyppys1",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://ppsdev.ushur.me/mob3.0/auth",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_post"
+    }
+    ]
+}

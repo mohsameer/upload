@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://qa-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "Profit",
+      "CLIENT_ID": "1mobapp-g256-9827-3fk8-1034r48j1174",
+      "CLIENT_SECRET": "0ac02842-106d-4ef9-9f19-8c4d897c113d",
+      "USERNAME": "vyyhyppys1",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://sso-qa.pps.co.za/group-app/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}
