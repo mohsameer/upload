@@ -1,0 +1,62 @@
+{
+  "del": false,
+  "description": "APPNAME",
+  "displayName": "APPNAME",
+  "dn": "inum={{ with secret `secret/oidcv2/APPNAME-clientId` -}}{{ .Data.value }}{{-  end }},ou=clients,o=jans",
+  "inum": "{{ with secret `secret/oidcv2/APPNAME-clientId` -}}{{ .Data.value }}{{-  end }}",
+  "responseTypes": [
+    "code",
+    "id_token"
+  ],
+  "trustedClient": true,
+  "disabled": false,
+  "includeClaimsInIdToken": true,
+  "persistClientAuthorizations": true,
+  "rptAsJwt": false,
+  "accessTokenAsJwt": true,
+  "attributes": {
+    "keepClientAuthorizationAfterExpiration": false,
+    "runIntrospectionScriptBeforeAccessTokenAsJwtCreationAndIncludeClaims": false,
+    "tlsClientAuthSubjectDn": null,
+    "backchannelLogoutUri":["https://test.pps.co.za/logout"],
+    "backchannelLogoutSessionRequired": true
+  },
+  "applicationType": "web",
+  "clientSecret": "{{ with secret `secret/oidcv2/APPNAME-clientSecret` -}}{{ .Data.value }}{{-  end }}",
+  "clientUriLocalized": "",
+  "defaultAcrValues": [
+    "icrypto_auth"
+  ],
+  "grantTypes": [
+    "authorization_code",
+    "refresh_token"
+  ],
+  "idTokenSignedResponseAlg": "RS256",
+  "initiateLoginUri": "",
+  "jwks": "",
+  "jwksUri": "",
+  "logoURI": "",
+  "logoutSessionRequired": false,
+  "policyURI": "",
+  "postLogoutRedirectUris": "`{{ with secret `secret/oidcv2/APPNAME-postLogoutRedirectUris` -}}{{ .Data.value | parseJSON | toJSON }}{{-  end }}`",
+  "redirectUris": "`{{ with secret `secret/oidcv2/APPNAME-redirectUris` -}}{{ .Data.value | parseJSON | toJSON }}{{-  end }}`",
+  "requireAuthTime": false,
+  "scopes": [
+    "inum=12f96c06-b7e3-4249-b408-06f8b6d7a63a,ou=scopes,o=jans",
+    "inum=43F1,ou=scopes,o=jans",
+    "inum=F0C4,ou=scopes,o=jans",
+    "inum=dda824fa-e754-4e00-a902-3bf630c6ceb1,ou=scopes,o=jans",
+    "inum=d68cd934-4884-4df3-870f-47d367e5b921,ou=scopes,o=jans"
+  ],
+  "subjectType": "public",
+  "tokenEndpointAuthMethod": "client_secret_basic",
+  "tosURI": "",
+  "objectClass": "jansClnt",
+  "displayNameLocalized": "{}",
+  "logoUriLocalized": "{}",
+  "policyUriLocalized": "{}",
+  "tosUriLocalized": "{}",
+  "groups": "`{{ with secret `secret/oidcv2/APPNAME-introspectorConfig` -}}{{ $jsonData := .Data.value | parseJSON }}{{ $jsonData.groups | toJSON }}{{-  end }}`",
+  "interceptorConfig": "`{{ with secret `secret/oidcv2/APPNAME-introspectorConfig` -}}{{ .Data.value | parseJSON | toJSON }}{{-  end }}`",
+  "configUpdated": false
+}

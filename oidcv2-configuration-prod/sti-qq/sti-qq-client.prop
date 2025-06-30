@@ -1,0 +1,7 @@
+{
+  "secret/oidcv2/sti-qq-clientId": "3stiqq-l725-2789-2yu9-2675r7yy9o7",
+  "secret/oidcv2/sti-qq-clientSecret": "f1869ac3-7a00-412e-a9b9-84edaee44ed0",
+  "secret/oidcv2/sti-qq-redirectUris": "[\"https://portal.ppsisecure.com.na/signin-oidc\"]",
+  "secret/oidcv2/sti-qq-postLogoutRedirectUris": "[\"https://portal.ppsisecure.com.na/signout-callback-oidc\"]",
+  "secret/oidcv2/sti-qq-introspectorConfig": "{\"cauthnpUrl\": \"https://sso.pps.co.za/sso-login\", \"errorUrl\": \"https://sso.pps.co.za/sso-login/error\", \"idClaim\": \"userName\", \"claimsMap\": {\"mail\": \"email\", \"mobile\": \"mobile\", \"userId\": \"userId\", \"cn\": \"uID\", \"sn\": \"familyName\", \"givenName\": \"givenName\", \"applications\": \"applications\", \"sparkleData\": \"sparkleData\", \"sparkleLinkedData\": \"sparkleLinkedData\", \"nickname\": \"userName\", \"profitData\": \"profitData\", \"saID\": \"saID\", \"title\": \"title\"}, \"postNewSessionUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/create\", \"postSessionCompleteUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/{session_id}/complete\", \"interceptorLoglevel\": \"DEBUG\", \"taiMethod\": \"query\", \"oidcUrl\": \"$oidcUrl\", \"groups\": [\"group3\"]}"
+}

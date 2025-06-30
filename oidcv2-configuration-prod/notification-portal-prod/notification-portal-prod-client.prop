@@ -1,0 +1,7 @@
+{
+  "secret/oidcv2/notification-portal-prod-clientId": "f3f4eb77-230d-47cc-92db-c31272082477",
+  "secret/oidcv2/notification-portal-prod-clientSecret": "4a32d272-99a2-488b-b455-1cb10e4b172e",
+  "secret/oidcv2/notification-portal-prod-redirectUris": "[\"https://sso.pps.co.za/notifications-portal/oauth2/code/oidc\"]",
+  "secret/oidcv2/notification-portal-prod-postLogoutRedirectUris": "[\"https://sso.pps.co.za/notifications-portal/logout\"]",
+  "secret/oidcv2/notification-portal-prod-introspectorConfig": "{\"cauthnpUrl\": \"https://sso.pps.co.za/sso-login\", \"errorUrl\": \"https://sso.pps.co.za/sso-login/error\", \"idClaim\": \"userName\", \"claimsMap\": {\"mail\": \"email\", \"mobile\": \"mobile\", \"userId\": \"userId\", \"cn\": \"uID\", \"sn\": \"familyName\", \"givenName\": \"givenName\", \"applications\": \"applications\", \"sparkleData\": \"sparkleData\", \"sparkleLinkedData\": \"sparkleLinkedData\", \"nickname\": \"userName\", \"profitData\": \"profitData\", \"saID\": \"saID\", \"title\": \"title\"}, \"postNewSessionUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/create\", \"postSessionCompleteUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/{session_id}/complete\", \"interceptorLoglevel\": \"DEBUG\", \"taiMethod\": \"query\", \"oidcUrl\": \"$oidcUrl\", \"groups\": [\"group3\"]}"
+}

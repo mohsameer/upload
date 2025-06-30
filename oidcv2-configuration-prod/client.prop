@@ -1,0 +1,7 @@
+{
+  "secret/oidcv2/APPNAME-clientId": "liftbff-213s-29hh-10gd-s18531064242",
+  "secret/oidcv2/APPNAME-clientSecret": "clientsecret",
+  "secret/oidcv2/APPNAME-redirectUris": "[\"https://pro-fit.pps.co.za/pro-fit/login/oauth2/code/oidc\", \"https://sso.pps.co.za/pro-fit/login/oauth2/code/oidc\", \"https://sso.pps.co.za/pro-fit-bff/login/oauth2/code/oidc\"]",
+  "secret/oidcv2/APPNAME-postLogoutRedirectUris": "[\"https://pro-fit.pps.co.za/pro-fit/login/oauth2/code/oidc\", \"https://sso.pps.co.za/pro-fit/login/oauth2/code/oidc\", \"https://sso.pps.co.za/pro-fit-bff/login/oauth2/code/oidc\"]",
+  "secret/oidcv2/APPNAME-introspectorConfig": "{\"cauthnpUrl\": \"https://sso.pps.co.za/sso-login\", \"errorUrl\": \"https://sso.pps.co.za/sso-login/error\", \"idClaim\": \"userName\", \"claimsMap\": {\"mail\": \"email\", \"mobile\": \"mobile\", \"userId\": \"userId\", \"cn\": \"uID\", \"sn\": \"familyName\", \"givenName\": \"givenName\", \"applications\": \"applications\", \"sparkleData\": \"sparkleData\", \"sparkleLinkedData\": \"sparkleLinkedData\", \"nickname\": \"userName\", \"profitData\": \"profitData\", \"saID\": \"saID\", \"title\": \"title\"}, \"postNewSessionUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/create\", \"postSessionCompleteUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/{session_id}/complete\", \"interceptorLoglevel\": \"DEBUG\", \"taiMethod\": \"query\", \"oidcUrl\": \"$oidcUrl\", \"groups\": [\"group3\"]}"
+}

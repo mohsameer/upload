@@ -1,0 +1,7 @@
+{
+  "secret/oidcv2/cred-mgmt-clientId": "3credm-prod-6734-9kh7-1019r66p2189",
+  "secret/oidcv2/cred-mgmt-clientSecret": "80957339-31a4-4c7e-8389-3bf0950f922a",
+  "secret/oidcv2/cred-mgmt-redirectUris": "[\"https://portal.ppsisecure.com.na/signin-oidc\"]",
+  "secret/oidcv2/cred-mgmt-postLogoutRedirectUris": "[\"https://portal.ppsisecure.com.na/signout-callback-oidc\"]",
+  "secret/oidcv2/cred-mgmt-introspectorConfig": "{\"cauthnpUrl\": \"https://sso.pps.co.za/sso-login\", \"errorUrl\": \"https://sso.pps.co.za/sso-login/error\", \"idClaim\": \"userName\", \"claimsMap\": {\"mail\": \"email\", \"mobile\": \"mobile\", \"userId\": \"userId\", \"cn\": \"uID\", \"sn\": \"familyName\", \"givenName\": \"givenName\", \"applications\": \"applications\", \"sparkleData\": \"sparkleData\", \"sparkleLinkedData\": \"sparkleLinkedData\", \"nickname\": \"userName\", \"profitData\": \"profitData\", \"saID\": \"saID\", \"title\": \"title\"}, \"postNewSessionUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/create\", \"postSessionCompleteUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/{session_id}/complete\", \"interceptorLoglevel\": \"DEBUG\", \"taiMethod\": \"query\", \"oidcUrl\": \"$oidcUrl\", \"groups\": [\"group3\"]}"
+}

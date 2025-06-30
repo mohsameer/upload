@@ -1,0 +1,7 @@
+{
+  "secret/oidcv2/sparkle-nam-clientId": "1namprod-k287-1945-5jy9-8276c36g1276",
+  "secret/oidcv2/sparkle-nam-clientSecret": "19dd0e6e-f9e9-4f01-a3b1-9942cf01991c",
+  "secret/oidcv2/sparkle-nam-redirectUris": "[\"https://portal.ppsisecure.com.na/signin-oidc\"]",
+  "secret/oidcv2/sparkle-nam-postLogoutRedirectUris": "[\"https://portal.ppsisecure.com.na/signout-callback-oidc\"]",
+  "secret/oidcv2/sparkle-nam-introspectorConfig": "{\"cauthnpUrl\": \"https://sso.pps.co.za/sso-login\", \"errorUrl\": \"https://sso.pps.co.za/sso-login/error\", \"idClaim\": \"userName\", \"claimsMap\": {\"mail\": \"email\", \"mobile\": \"mobile\", \"cn\": \"uID\", \"sn\": \"familyName\", \"givenName\": \"givenName\", \"applications\": \"applications\", \"sparkleData\": \"sparkleData\", \"sparkleLinkedData\": \"sparkleLinkedData\", \"nickname\": \"userName\", \"profitData\": \"profitData\", \"saID\": \"saID\", \"title\": \"title\"}, \"postNewSessionUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/create\", \"postSessionCompleteUrl\": \"http://session-mgmt-service.services.svc.cluster.local:8081/api/session/{session_id}/complete\", \"interceptorLoglevel\": \"DEBUG\", \"taiMethod\": \"query\", \"oidcUrl\": \"$oidcUrl\", \"groups\": [\"group3\"]}"
+}
