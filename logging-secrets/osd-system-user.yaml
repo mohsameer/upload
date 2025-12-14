@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  password: YWRtaW4=
+  username: YWRtaW4=
+kind: Secret
+metadata:
+  creationTimestamp: "2025-09-01T11:23:49Z"
+  name: osd-system-user
+  namespace: logging
+  resourceVersion: "615281869"
+  uid: 91780af4-3be9-4893-8f60-c1198ef1efc3
+type: Opaque

@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  pipelines.yaml: bG9ncy1waXBlbGluZToKICBzaW5rOgogIC0gb3BlbnNlYXJjaDoKICAgICAgY2VydDogL3Vzci9zaGFyZS9kYXRhLXByZXBwZXIvY2VydHMvY2EucGVtCiAgICAgIGhvc3RzOgogICAgICAtIGh0dHBzOi8vb3BlbnNlYXJjaC1jbHVzdGVyLW1hc3Rlcjo5MjAwCiAgICAgIGluZGV4OiBsb2dzLSV7eXl5eS5NTS5kZH0KICAgICAgaW5zZWN1cmU6IGZhbHNlCiAgICAgIHBhc3N3b3JkOiBhZG1pbgogICAgICB1c2VybmFtZTogYWRtaW4KICBzb3VyY2U6CiAgICBodHRwOgogICAgICBwb3J0OiAyMDIzCiAgICAgIHNzbDogZmFsc2UKICB3b3JrZXJzOiAyCg==
+kind: Secret
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: true-trace-prepper:/Secret:logging/true-trace-prepper-pipeline
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Secret","metadata":{"annotations":{"argocd.argoproj.io/tracking-id":"true-trace-prepper:/Secret:logging/true-trace-prepper-pipeline"},"labels":{"app.kubernetes.io/instance":"true-trace-prepper","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"true-trace-prepper","app.kubernetes.io/version":"img.1.0.4","helm.sh/chart":"true-trace-prepper-1.0.4-pps"},"name":"true-trace-prepper-pipeline","namespace":"logging"},"stringData":{"pipelines.yaml":"logs-pipeline:\n  sink:\n  - opensearch:\n      cert: /usr/share/data-prepper/certs/ca.pem\n      hosts:\n      - https://opensearch-cluster-master:9200\n      index: logs-%{yyyy.MM.dd}\n      insecure: false\n      password: admin\n      username: admin\n  source:\n    http:\n      port: 2023\n      ssl: false\n  workers: 2\n"},"type":"Opaque"}
+  creationTimestamp: "2025-12-01T13:02:53Z"
+  labels:
+    app.kubernetes.io/instance: true-trace-prepper
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: true-trace-prepper
+    app.kubernetes.io/version: img.1.0.4
+    helm.sh/chart: true-trace-prepper-1.0.4-pps
+  name: true-trace-prepper-pipeline
+  namespace: logging
+  resourceVersion: "1764943467315567024"
+  uid: c6a8d93d-7028-4a3c-a422-716d676ebfb8
+type: Opaque
