@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://stg-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://stg-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "anchor-app",
+      "CLIENT_ID": "4f0fb57b-c572-4647-9ae6-87e3c04f7602",
+      "CLIENT_SECRET": "wyCtelIaZXC7Ku0mQOaSoxiKiqoHUQpS0BSa3Gty",
+      "USERNAME": "cjulius",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://sso-staging.pps.co.za/sso-bff/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://stg-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://stg-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "gbi-gff-stage",
+      "CLIENT_ID": "eb4f4cd2-5acf-4510-bed2-0312ca5c57a1",
+      "CLIENT_SECRET": "gbiXw28GsYqBu1gjjWHLND1feWB93eUPdSKzDbff",
+      "USERNAME": "cjulius",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://sso-staging.pps.co.za/gbi-bff/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}

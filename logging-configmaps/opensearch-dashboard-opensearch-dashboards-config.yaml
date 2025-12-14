@@ -1,0 +1,32 @@
+apiVersion: v1
+data:
+  opensearch.yml: |
+    cluster.name: opensearch-cluster
+
+    # Bind to all interfaces because we don't know what IP address Docker will assign to us.
+    network.host: 0.0.0.0
+
+    # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
+    # Implicitly done if ".singleNode" is set to "true".
+    # discovery.type: single-node
+
+    # Start OpenSearch Security Demo Configuration
+    # WARNING: revise all the lines below before you go into production
+    compatibility.override_main_response_version: true
+    plugins.security.disabled: true
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: opensearch-dashboard
+    meta.helm.sh/release-namespace: logging
+  creationTimestamp: "2025-08-20T10:38:20Z"
+  labels:
+    app.kubernetes.io/instance: opensearch-dashboard
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: opensearch-dashboards
+    app.kubernetes.io/version: 2.3.0
+    helm.sh/chart: opensearch-dashboards-2.5.0
+  name: opensearch-dashboard-opensearch-dashboards-config
+  namespace: logging
+  resourceVersion: "602182180"
+  uid: 9ed2f7d5-bc4d-4473-8b7a-8f0189be6e01

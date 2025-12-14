@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://stg-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://stg-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "profit",
+      "CLIENT_ID": "30b4f93a-e661-4e4b-bad2-9a800c2e89d4",
+      "CLIENT_SECRET": "prongDNqnUTeUZUjK8GZnlpQJnpNBHayfIWMHs2tg",
+      "USERNAME": "cjulius",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://sso-staging.pps.co.za/pro-fit/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}

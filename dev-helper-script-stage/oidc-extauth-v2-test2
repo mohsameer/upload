@@ -1,0 +1,476 @@
+[sameer@gc-pre-icrypto-vm00 dev-helper-scripts]$ python3 oidc_ext_authn.py
+----------------------------------------------------------
+-------      Running Anchor App       -------
+----------------------------------------------------------
+-----------------------Well-known-------------------------
+
+---------------- request ----------------
+GET https://oidc-pprod.pps.co.za/oidcv2/.well-known/openid-configuration
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+None
+---------------- response ----------------
+200 OK https://oidc-pprod.pps.co.za/oidcv2/.well-known/openid-configuration
+Date: Fri, 22 Mar 2024 07:16:37 GMT
+Content-Type: application/json
+Set-Cookie: X-Correlation-Id=d2d4e82f-8d06-40e6-a616-a55d22763145; Secure; HttpOnly
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+Transfer-Encoding: chunked
+
+{
+  "request_parameter_supported" : true,
+  "pushed_authorization_request_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/par",
+  "introspection_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/introspection",
+  "claims_parameter_supported" : false,
+  "issuer" : "https://oidc-pprod.pps.co.za",
+  "userinfo_encryption_enc_values_supported" : [ "A128CBC+HS256", "A256CBC+HS512", "A128GCM", "A256GCM" ],
+  "id_token_encryption_enc_values_supported" : [ "A128CBC+HS256", "A256CBC+HS512", "A128GCM", "A256GCM" ],
+  "access_token_signing_alg_values_supported" : [ "none", "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "ES512", "PS256", "PS384", "PS512" ],
+  "authorization_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/authorize",
+  "service_documentation" : "http://icrypto.com/docs",
+  "authorization_encryption_alg_values_supported" : [ "RSA1_5", "RSA-OAEP", "A128KW", "A256KW" ],
+  "claims_supported" : [ "street_address", "country", "zoneinfo", "role", "birthdate", "gender", "user_name", "formatted", "phone_mobile_number", "preferred_username", "locale", "inum", "up                                                dated_at", "post_office_box", "nickname", "email", "preferred_language", "website", "email_verified", "profitData", "sparkleData", "profile", "locality", "phone_number_verified", "room_numb                                                er", "given_name", "middle_name", "picture", "name", "phone_number", "postal_code", "region", "family_name", "oidcv2AdminUIRole" ],
+  "ssa_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/ssa",
+  "token_endpoint_auth_methods_supported" : [ "client_secret_basic", "client_secret_post", "client_secret_jwt", "private_key_jwt", "tls_client_auth", "self_signed_tls_client_auth" ],
+  "tls_client_certificate_bound_access_tokens" : true,
+  "response_modes_supported" : [ "query", "query.jwt", "jwt", "fragment", "form_post", "fragment.jwt", "form_post.jwt" ],
+  "backchannel_logout_session_supported" : true,
+  "token_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/token",
+  "response_types_supported" : [ "id_token code", "token code", "token id_token", "token", "token id_token code", "id_token", "code" ],
+  "authorization_encryption_enc_values_supported" : [ "A128CBC+HS256", "A256CBC+HS512", "A128GCM", "A256GCM" ],
+  "backchannel_token_delivery_modes_supported" : [ "poll", "ping", "push" ],
+  "dpop_signing_alg_values_supported" : [ "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "ES512", "PS256", "PS384", "PS512" ],
+  "request_uri_parameter_supported" : true,
+  "backchannel_user_code_parameter_supported" : false,
+  "grant_types_supported" : [ "password", "urn:ietf:params:oauth:grant-type:uma-ticket", "implicit", "refresh_token", "urn:ietf:params:oauth:grant-type:token-exchange", "authorization_code"                                                , "client_credentials", "urn:ietf:params:oauth:grant-type:device_code" ],
+  "ui_locales_supported" : [ "en", "bg", "de", "es", "fr", "it", "ru", "tr" ],
+  "userinfo_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/userinfo",
+  "authorization_challenge_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/authorization_challenge",
+  "op_tos_uri" : "https://oidc-pprod.pps.co.za/tos",
+  "require_request_uri_registration" : false,
+  "id_token_encryption_alg_values_supported" : [ "RSA1_5", "RSA-OAEP", "A128KW", "A256KW" ],
+  "frontchannel_logout_session_supported" : true,
+  "authorization_signing_alg_values_supported" : [ "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "ES512", "PS256", "PS384", "PS512" ],
+  "claims_locales_supported" : [ "en" ],
+  "clientinfo_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/clientinfo",
+  "request_object_signing_alg_values_supported" : [ "none", "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "ES512", "PS256", "PS384", "PS512" ],
+  "request_object_encryption_alg_values_supported" : [ "RSA1_5", "RSA-OAEP", "A128KW", "A256KW" ],
+  "session_revocation_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/revoke_session",
+  "check_session_iframe" : "https://oidc-pprod.pps.co.za/oidcv2/opiframe.htm",
+  "scopes_supported" : [ "sparkle", "https://icrypto.com/oauth/config/jwks.delete", "https://icrypto.com/oauth/oidc-v2-auth-server/session.readonly", "https://icrypto.com/oauth/config/saml.                                                write", "https://icrypto.com/oauth/config/scopes.readonly", "https://icrypto.com/oauth/config/saml-config.readonly", "https://icrypto.com/oauth/config/smtp.delete", "https://icrypto.com/oau                                                th/config/cache.readonly", "https://icrypto.com/oauth/config/saml-scope.write", "https://icrypto.com/oauth/config/user.readonly", "https://icrypto.com/oauth/oidc-v2-auth-server/config/admin                                                ui/user/rolePermissionMapping.readonly", "https://icrypto.com/scim/fido2.read", "https://icrypto.com/oauth/config/acrs.write", "openid", "profile", "credMgt:token", "https://icrypto.com/oau                                                th/config/uma/resources.readonly", "https://icrypto.com/oauth/oidc-v2-auth-server/config/properties.write", "https://icrypto.com/oauth/config/fido2.write", "https://icrypto.com/idp/config.r                                                eadonly", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/user/role.delete", "https://icrypto.com/scim/groups.read", "device_sso", "https://icrypto.com/oauth/config/jwks.write                                                ", "phone", "https://icrypto.com/idp/saml.readonly", "https://icrypto.com/oauth/oidc-v2-auth-server/config/properties.readonly", "https://icrypto.com/scim/groups.write", "https://icrypto.co                                                m/oauth/oidc-v2-auth-server/config/adminui/license.write", "https://icrypto.com/oauth/config/properties.write", "introspection", "https://icrypto.com/idp/saml.write", "https://icrypto.com/o                                                auth/config/saml-scope.readonly", "online_access", "user_name", "clientinfo", "https://icrypto.com/scim/fido2.write", "https://icrypto.com/oauth/config/scripts.readonly", "https://icrypto.c                                                om/oauth/oidc-v2-auth-server/config/adminui/user/role.readonly", "https://icrypto.com/oauth/config/openid-read", "https://icrypto.com/oauth/client/authorizations.readonly", "https://icrypto                                                .com/oauth/config/uma-write", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/license.readonly", "https://icrypto.com/oauth/config/uma-read", "https://icrypto.com/oauth/config                                                /logging.readonly", "https://icrypto.com/oauth/config/plugin.readonly", "https://icrypto.com/oauth/config/uma-delete", "https://icrypto.com/oauth/config/stats.readonly", "email", "https://i                                                crypto.com/oauth/config/user.write", "https://icrypto.com/oauth/config/agama.readonly", "address", "https://icrypto.com/oauth/config/openid/clients.readonly", "https://icrypto.com/oauth/con                                                fig/openid-write", "https://icrypto.com/oauth/config/agama.write", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/user/role.write", "credMgt:user", "https://icrypto.com/oauth                                                /config/logging.write", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/user/rolePermissionMapping.write", "https://icrypto.com/oauth/config/scopes.write", "https://icrypto.co                                                m/oauth/config/read-all", "https://icrypto.com/oauth/config/write-all", "https://icrypto.com/oauth/config/openid/clients.write", "https://icrypto.com/scim/fido.read", "https://icrypto.com/s                                                cim/fido.write", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/write-all", "https://icrypto.com/oauth/config/organization.write", "https://icrypto.com/oauth/config/oidcv2-li                                                nk.readonly", "https://icrypto.com/oauth/config/database/ldap.delete", "credMgt:register", "credMgt:notification", "https://icrypto.com/oauth/config/delete-all", "authorization_challenge",                                                 "https://icrypto.com/oauth/config/openid/clients.delete", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/delete-all", "https://icrypto.com/idp/realm.write", "https://icrypto.                                                com/oauth/oidc-v2-auth-server/config/adminui/user/permission.delete", "https://icrypto.com/auth/ssa.admin", "https://icrypto.com/scim/config.readonly", "https://icrypto.com/oauth/config/oid                                                cv2-link.write", "credMgt:endpoint", "https://icrypto.com/oauth/config/scripts.delete", "https://icrypto.com/oauth/config/uma/resources.delete", "https://icrypto.com/scim/users.read", "http                                                s://icrypto.com/oauth/config/fido2.readonly", "enrollMfa", "https://icrypto.com/oauth/config/user.delete", "https://icrypto.com/oauth/config/database/ldap.readonly", "https://icrypto.com/oa                                                uth/config/cache.write", "https://icrypto.com/scim/all-resources.search", "https://icrypto.com/oauth/config/attributes.readonly", "https://icrypto.com/oauth/config/smtp.readonly", "https://                                                icrypto.com/scim/users.write", "revoke_session", "https://icrypto.com/oauth/config/agama.delete", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/read-all", "https://icrypto.c                                                om/idp/config.write", "ro_session", "mobile_phone", "offline_access", "https://icrypto.com/oauth/config/saml.readonly", "https://icrypto.com/oauth/config/uma/resources.write", "https://icry                                                pto.com/oauth/config/organization.readonly", "https://icrypto.com/oauth/config/openid-delete", "profit", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/user/permission.write"                                                , "https://icrypto.com/oauth/config/attributes.delete", "https://icrypto.com/oauth/config/properties.readonly", "https://icrypto.com/oauth/config/jwks.readonly", "https://icrypto.com/oauth/                                                config/scopes.delete", "https://icrypto.com/oauth/config/database/ldap.write", "https://icrypto.com/oauth/config/scripts.write", "https://icrypto.com/scim/config.write", "uma_protection", "                                                permission", "https://icrypto.com/oauth/oidc-v2-auth-server/session.delete", "https://icrypto.com/oauth/client/authorizations.delete", "https://icrypto.com/oauth/config/acrs.readonly", "rev                                                oke_any_token", "gbi", "https://icrypto.com/idp/realm.readonly", "https://icrypto.com/scim/bulk", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/user/rolePermissionMapping.de                                                lete", "https://icrypto.com/oauth/config/saml-config.write", "https://icrypto.com/oauth/config/smtp.write", "https://icrypto.com/oauth/oidc-v2-auth-server/config/adminui/user/permission.rea                                                donly", "https://icrypto.com/oauth/config/attributes.write", "credMgt:password" ],
+  "backchannel_logout_supported" : true,
+  "acr_values_supported" : [ "casa", "basic_alias2", "basic_alias1", "basic", "icrypto_auth", "simple_password_auth" ],
+  "archived_jwks_uri" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/jwks/archived",
+  "request_object_encryption_enc_values_supported" : [ "A128CBC+HS256", "A256CBC+HS512", "A128GCM", "A256GCM" ],
+  "device_authorization_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/device_authorization",
+  "display_values_supported" : [ "page", "popup" ],
+  "userinfo_signing_alg_values_supported" : [ "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "ES512", "PS256", "PS384", "PS512" ],
+  "require_pushed_authorization_requests" : false,
+  "claim_types_supported" : [ "normal" ],
+  "userinfo_encryption_alg_values_supported" : [ "RSA1_5", "RSA-OAEP", "A128KW", "A256KW" ],
+  "end_session_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/end_session",
+  "revocation_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/revoke",
+  "backchannel_authentication_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/bc-authorize",
+  "token_endpoint_auth_signing_alg_values_supported" : [ "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "ES512", "PS256", "PS384", "PS512" ],
+  "frontchannel_logout_supported" : true,
+  "jwks_uri" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/jwks",
+  "subject_types_supported" : [ "public", "pairwise" ],
+  "id_token_signing_alg_values_supported" : [ "none", "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "ES512", "PS256", "PS384", "PS512" ],
+  "registration_endpoint" : "https://oidc-pprod.pps.co.za/oidcv2/restv1/register",
+  "id_token_token_binding_cnf_values_supported" : [ "tbh" ]
+}
+
+
+-----------------------OIDC p1-------------------------
+
+Calling Authorize call
+
+---------------- request ----------------
+GET https://oidc-pprod.pps.co.za/oidcv2/restv1/authorize?client_id=ae318769-653a-4c62-8d24-dddbc971c585&redirect_uri=https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc&response_type=c                                                ode&scope=openid%20sparkle%20email%20profit&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&code_challenge_method=S256
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+None
+---------------- response ----------------
+302 Found https://oidc-pprod.pps.co.za/oidcv2/restv1/authorize?client_id=ae318769-653a-4c62-8d24-dddbc971c585&redirect_uri=https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc&response_                                                type=code&scope=openid%20sparkle%20email%20profit&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&code_challenge_method=S256
+Date: Fri, 22 Mar 2024 07:16:37 GMT
+Set-Cookie: X-Correlation-Id=8ca26212-7ef7-43b4-ae1c-f3c4753225f2; Secure; HttpOnly
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Location: https://oidc-pprod.pps.co.za/jans-auth/authorize.htm?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso-pre.pps.co.za%2Fss                                                o-bff%2Flogin%2Foauth2%2Fcode%2Foidc&code_challenge_method=S256&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Content-Length: 0
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+
+
+
+Calling Authorize htm call
+
+---------------- request ----------------
+GET https://oidc-pprod.pps.co.za/jans-auth/authorize.htm?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso-pre.pps.co.za%2Fsso-bff%                                                2Flogin%2Foauth2%2Fcode%2Foidc&code_challenge_method=S256&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+None
+---------------- response ----------------
+302 Found https://oidc-pprod.pps.co.za/jans-auth/authorize.htm?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&redirect_uri=https%3A%2F%2Fsso-pre.pps.co.za%2Fss                                                o-bff%2Flogin%2Foauth2%2Fcode%2Foidc&code_challenge_method=S256&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8
+Date: Fri, 22 Mar 2024 07:16:37 GMT
+Set-Cookie: X-Correlation-Id=cc70e77f-4fc1-4e0d-91a4-2f8b1feb141e; Secure; HttpOnly, org.gluu.i18n.Locale=en; Path=/; Expires=Sat, 22-Mar-2025 07:16:37 GMT; Max-Age=31536000; Secure, start_                                                page=None; Path=/; Expires=Fri, 22-Mar-2024 07:21:37 GMT; Max-Age=300; Secure; HttpOnly, session_id=a9ef0bcb-14b8-4222-a1b3-5e2800725892; Path=/; Secure; HttpOnly; Expires=Sat, 23 Mar 2024                                                 07:16:37 +0000;, session_state=b60d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80; Path=/; Secure; Expires=Sat, 23 Mar 2024 07:16:37 +0000                                                ;, opbs=3f605322-d7ec-4369-aeaf-27bc41358007; Path=/; Secure; Expires=Sat, 23 Mar 2024 07:16:37 +0000; ; SameSite=None, rp_origin_id=https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc                                                ; Path=/jans-auth; Secure; HttpOnly; Expires=Sat, 23 Mar 2024 07:16:37 +0000;, x_icrypto_tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJq                                                d3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNv                                                LnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjN                                                jItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejF                                                iTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g; Path                                                =/; Expires=Fri, 22-Mar-2024 09:16:37 GMT; Max-Age=7200; Secure; HttpOnly
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Location: https://sso-pre.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSU                                                zI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvb                                                klkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYz                                                k3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh                                                _omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Content-Length: 0
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+
+
+Status code:  302
+Response headers:  {'Date': 'Fri, 22 Mar 2024 07:16:37 GMT', 'Set-Cookie': 'X-Correlation-Id=cc70e77f-4fc1-4e0d-91a4-2f8b1feb141e; Secure; HttpOnly, org.gluu.i18n.Locale=en; Path=/; Expires                                                =Sat, 22-Mar-2025 07:16:37 GMT; Max-Age=31536000; Secure, start_page=None; Path=/; Expires=Fri, 22-Mar-2024 07:21:37 GMT; Max-Age=300; Secure; HttpOnly, session_id=a9ef0bcb-14b8-4222-a1b3-5                                                e2800725892; Path=/; Secure; HttpOnly; Expires=Sat, 23 Mar 2024 07:16:37 +0000;, session_state=b60d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee                                                40f8a80; Path=/; Secure; Expires=Sat, 23 Mar 2024 07:16:37 +0000;, opbs=3f605322-d7ec-4369-aeaf-27bc41358007; Path=/; Secure; Expires=Sat, 23 Mar 2024 07:16:37 +0000; ; SameSite=None, rp_or                                                igin_id=https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc; Path=/jans-auth; Secure; HttpOnly; Expires=Sat, 23 Mar 2024 07:16:37 +0000;, x_icrypto_tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4                                                LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6                                                WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5N                                                ywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6                                                ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNK                                                MP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g; Path=/; Expires=Fri, 22-Mar-2024 09:16:37 GMT; Max-Age=7200; Secure; HttpOnly', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Loca                                                tion': 'https://sso-pre.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI                                                1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbkl                                                kIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3                                                MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_o                                                mGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g', 'Server': 'oidc', 'X-X                                                ss-Protection': '1; mode=block', 'X-Content-Type-Options': 'nosniff', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'Via': '1.1 google', 'Content-Length': '0', 'Alt-Sv                                                c': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'}
+Response body:
+Session cookies:  {"opbs": "3f605322-d7ec-4369-aeaf-27bc41358007", "org.gluu.i18n.Locale": "en", "session_id": "a9ef0bcb-14b8-4222-a1b3-5e2800725892", "session_state": "b60d60cecb07a36e01c8                                                15a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80", "start_page": "None", "x_icrypto_tai": "eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxN                                                mU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJod                                                HRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbn                                                RfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7                                                _g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQn                                                DKfANl3V1h9cPbBQHUUcYAs-g", "X-Correlation-Id": "8ca26212-7ef7-43b4-ae1c-f3c4753225f2", "rp_origin_id": "https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc"}
+
+==============================
+
+
+
+Calling login.htm call
+
+https://sso-pre.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.ey                                                JhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE                                                5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUi                                                fQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-                                                yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+
+---------------- request ----------------
+GET https://sso-pre.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ                                                9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjo                                                iMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1                                                ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXz                                                B6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+None
+---------------- response ----------------
+200 OK https://sso-pre.pps.co.za/sso-login/login?steps=ext_auth_user&tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1                                                NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklk                                                IjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3M                                                WM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_om                                                GXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+Server: nginx/1.23.2
+Date: Fri, 22 Mar 2024 07:16:37 GMT
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: keep-alive
+ETag: W/"65dda09b-de8:dtagent10285240307101407GgXK:dtagent10285240307101407GgXK"
+X-OneAgent-JS-Injection: true
+X-ruxit-JS-Agent: true
+Last-Modified: Tue, 27 Feb 2024 08:43:05 GMT
+Access-Control-Allow-Origin: *
+Content-Encoding: gzip
+Server-Timing: dtSInfo;desc="0", dtRpid;desc="-109609594"
+Set-Cookie: dtCookie=v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0; Path=/; Domain=.pps.co.za
+X-Frame-Options: SAMEORIGIN
+Content-Security-Policy: frame-ancestors sso-pre.pps.co.za
+
+<!DOCTYPE html><html lang="en"><head>
+                <meta charset="utf-8">
+                <title>SSOLogin</title>
+                <base href="/sso-login/">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <script type="text/javascript" src="/ruxitagentjs_ICANVfghqru_10285240307101407.js" data-dtconfig="rid=RID_-1497600889|rpid=-109609594|domain=pps.co.za|reportUrl=/rb_bf57323                                                msy|app=01cdf7d0f578ec25|cuc=ny8z5wit|mel=100000|featureHash=ICANVfghqru|dpvc=1|md=mdcc1=abody ^rb app-root ^rb app-core ^rb app-root-layout ^rb header ^rb app-header ^rb nav ^rb div.navbar                                                -right-container ^rb div.header-right-content.username.ng-star-inserted|ssv=4|lastModification=1711004599735|tp=500,50,0|rdnt=0|uxrgce=1|bp=3|agentUri=/ruxitagentjs_ICANVfghqru_102852403071                                                01407.js"></script><link rel="icon" type="image/x-icon" href="favicon.ico">
+        <style>@charset "UTF-8";:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754                                                ;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gr                                                ay-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--b                                                s-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13, 110, 253;--bs-secondary-rgb:108, 117, 125;--bs-success-rgb:25, 135, 84;--bs-info-rgb:13, 202,                                                 240;--bs-warning-rgb:255, 193, 7;--bs-danger-rgb:220, 53, 69;--bs-light-rgb:248, 249, 250;--bs-dark-rgb:33, 37, 41;--bs-white-rgb:255, 255, 255;--bs-black-rgb:0, 0, 0;--bs-body-color-rgb:3                                                3, 37, 41;--bs-body-bg-rgb:255, 255, 255;--bs-font-sans-serif:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color                                                 Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--bs-font-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--bs-gradient:linea                                                r-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height                                                :1.5;--bs-body-color:#212529;--bs-body-bg:#fff}*,*:before,*:after{box-sizing:border-box}@media (prefers-reduced-motion: no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-famil                                                y:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-                                                body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}@font-face{font-family:gotham-book;src:url(GothamPro-Book.1f541d6                                                b616857c6.eot);src:url(GothamPro-Book.1f541d6b616857c6.eot?#iefix) format("embedded-opentype"),url(GothamPro-Book.a47544b09b9f2eb3.woff2) format("woff2"),url(GothamPro-Book.15a159de7a7a921c                                                .woff) format("woff"),url(GothamPro-Book.477f1222752d7d14.ttf) format("truetype"),url(GothamPro-Book.51e44cd1595a496c.svg) format("svg")}@font-face{font-family:gotham;src:url(GothamPro.4370                                                bffa48c71068.eot);src:url(GothamPro.4370bffa48c71068.eot?#iefix) format("embedded-opentype"),url(GothamPro.3184916c785a3912.woff2) format("woff2"),url(GothamPro.30ca22fa55676c41.woff) forma                                                t("woff"),url(GothamPro.b2a16a80c2d812df.ttf) format("truetype"),url(GothamPro.e54e13e470e28412.svg) format("svg")}html,body{font-family:gotham-book,Arial}html,body{font-size:15px;margin:0;                                                padding:0;position:relative}*{transition:all .5s}</style><link rel="stylesheet" href="styles.f917df4854ca3e9e.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" h                                                ref="styles.f917df4854ca3e9e.css"></noscript></head>
+        <body>
+                <app-root></app-root>
+        <script src="runtime.1112cc443272b06f.js" type="module"></script><script src="polyfills.5fc390051e90fc65.js" type="module"></script><script src="main.b6bae847caa18d74.js" type="modu                                                le"></script>
+
+</body></html>
+
+Status code:  200
+Response headers:  {'Server': 'nginx/1.23.2', 'Date': 'Fri, 22 Mar 2024 07:16:37 GMT', 'Content-Type': 'text/html', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'ETag': 'W/"6                                                5dda09b-de8:dtagent10285240307101407GgXK:dtagent10285240307101407GgXK"', 'X-OneAgent-JS-Injection': 'true', 'X-ruxit-JS-Agent': 'true', 'Last-Modified': 'Tue, 27 Feb 2024 08:43:05 GMT', 'Ac                                                cess-Control-Allow-Origin': '*', 'Content-Encoding': 'gzip', 'Server-Timing': 'dtSInfo;desc="0", dtRpid;desc="-109609594"', 'Set-Cookie': 'dtCookie=v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F                                                88F8_perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0; Path=/; Domain=.pps.co.za', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Security-Policy': 'frame-ancestors sso-pre.pps.co.za'                                                }
+Response body:  <!DOCTYPE html><html lang="en"><head>
+                <meta charset="utf-8">
+                <title>SSOLogin</title>
+                <base href="/sso-login/">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <script type="text/javascript" src="/ruxitagentjs_ICANVfghqru_10285240307101407.js" data-dtconfig="rid=RID_-1497600889|rpid=-109609594|domain=pps.co.za|reportUrl=/rb_bf57323                                                msy|app=01cdf7d0f578ec25|cuc=ny8z5wit|mel=100000|featureHash=ICANVfghqru|dpvc=1|md=mdcc1=abody ^rb app-root ^rb app-core ^rb app-root-layout ^rb header ^rb app-header ^rb nav ^rb div.navbar                                                -right-container ^rb div.header-right-content.username.ng-star-inserted|ssv=4|lastModification=1711004599735|tp=500,50,0|rdnt=0|uxrgce=1|bp=3|agentUri=/ruxitagentjs_ICANVfghqru_102852403071                                                01407.js"></script><link rel="icon" type="image/x-icon" href="favicon.ico">
+        <style>@charset "UTF-8";:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754                                                ;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gr                                                ay-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--b                                                s-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13, 110, 253;--bs-secondary-rgb:108, 117, 125;--bs-success-rgb:25, 135, 84;--bs-info-rgb:13, 202,                                                 240;--bs-warning-rgb:255, 193, 7;--bs-danger-rgb:220, 53, 69;--bs-light-rgb:248, 249, 250;--bs-dark-rgb:33, 37, 41;--bs-white-rgb:255, 255, 255;--bs-black-rgb:0, 0, 0;--bs-body-color-rgb:3                                                3, 37, 41;--bs-body-bg-rgb:255, 255, 255;--bs-font-sans-serif:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color                                                 Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--bs-font-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--bs-gradient:linea                                                r-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height                                                :1.5;--bs-body-color:#212529;--bs-body-bg:#fff}*,*:before,*:after{box-sizing:border-box}@media (prefers-reduced-motion: no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-famil                                                y:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-                                                body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}@font-face{font-family:gotham-book;src:url(GothamPro-Book.1f541d6                                                b616857c6.eot);src:url(GothamPro-Book.1f541d6b616857c6.eot?#iefix) format("embedded-opentype"),url(GothamPro-Book.a47544b09b9f2eb3.woff2) format("woff2"),url(GothamPro-Book.15a159de7a7a921c                                                .woff) format("woff"),url(GothamPro-Book.477f1222752d7d14.ttf) format("truetype"),url(GothamPro-Book.51e44cd1595a496c.svg) format("svg")}@font-face{font-family:gotham;src:url(GothamPro.4370                                                bffa48c71068.eot);src:url(GothamPro.4370bffa48c71068.eot?#iefix) format("embedded-opentype"),url(GothamPro.3184916c785a3912.woff2) format("woff2"),url(GothamPro.30ca22fa55676c41.woff) forma                                                t("woff"),url(GothamPro.b2a16a80c2d812df.ttf) format("truetype"),url(GothamPro.e54e13e470e28412.svg) format("svg")}html,body{font-family:gotham-book,Arial}html,body{font-size:15px;margin:0;                                                padding:0;position:relative}*{transition:all .5s}</style><link rel="stylesheet" href="styles.f917df4854ca3e9e.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" h                                                ref="styles.f917df4854ca3e9e.css"></noscript></head>
+        <body>
+                <app-root></app-root>
+        <script src="runtime.1112cc443272b06f.js" type="module"></script><script src="polyfills.5fc390051e90fc65.js" type="module"></script><script src="main.b6bae847caa18d74.js" type="modu                                                le"></script>
+
+</body></html>
+Session cookies:  {"dtCookie": "v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0", "opbs": "3f605322-d7ec-4369-aeaf-27bc41358007", "                                                org.gluu.i18n.Locale": "en", "session_id": "a9ef0bcb-14b8-4222-a1b3-5e2800725892", "session_state": "b60d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59                                                -f07ee40f8a80", "start_page": "None", "x_icrypto_tai": "eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJo                                                dHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZ                                                mRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNss                                                pUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN                                                _ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g", "X-Correlation-Id": "8ca26212-7ef7-43b4-                                                ae1c-f3c4753225f2", "rp_origin_id": "https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc"}
+
+==============================
+
+
+----------------------- AUTHN-------------------------
+
+Check user call....
+
+---------------- request ----------------
+POST https://sidas-pprod.pps.co.za/api/authnv2
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Bearer eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3                                                Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2U                                                wIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVq                                                fbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4                                                KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+Cookie: dtCookie=v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0
+Content-Length: 36
+Content-Type: application/json
+
+b'{"username": "olab", "password": ""}'
+---------------- response ----------------
+200 OK https://sidas-pprod.pps.co.za/api/authnv2
+Date: Fri, 22 Mar 2024 07:16:39 GMT
+Content-Type: application/json
+Vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+X-Content-Type-Options: nosniff, nosniff
+X-XSS-Protection: 1; mode=block, 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Server: oidc
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+Transfer-Encoding: chunked
+
+{"nextSteps":["ext_auth_password"]}
+
+Status code:  200
+Response headers:  {'Date': 'Fri, 22 Mar 2024 07:16:39 GMT', 'Content-Type': 'application/json', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-                                                Type-Options': 'nosniff, nosniff', 'X-XSS-Protection': '1; mode=block, 1; mode=block', 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0                                                ', 'X-Frame-Options': 'DENY', 'Server': 'oidc', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'Via': '1.1 google', 'Alt-Svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2                                                592000', 'Transfer-Encoding': 'chunked'}
+Response body:  {"nextSteps":["ext_auth_password"]}
+Session cookies:  {"dtCookie": "v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0", "opbs": "3f605322-d7ec-4369-aeaf-27bc41358007", "                                                org.gluu.i18n.Locale": "en", "session_id": "a9ef0bcb-14b8-4222-a1b3-5e2800725892", "session_state": "b60d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59                                                -f07ee40f8a80", "start_page": "None", "x_icrypto_tai": "eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJo                                                dHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZ                                                mRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNss                                                pUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN                                                _ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g", "X-Correlation-Id": "8ca26212-7ef7-43b4-                                                ae1c-f3c4753225f2", "rp_origin_id": "https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc"}
+
+==============================
+
+
+
+Calling authn call....
+
+---------------- request ----------------
+POST https://sidas-pprod.pps.co.za/api/authnv2
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Bearer eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3                                                Nzby1sb2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2U                                                wIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVq                                                fbDb6iMt7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4                                                KsQmhwr8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+Cookie: dtCookie=v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0
+Content-Length: 46
+Content-Type: application/json
+
+b'{"username": "olab", "password": "Password1!"}'
+---------------- response ----------------
+200 OK https://sidas-pprod.pps.co.za/api/authnv2
+Date: Fri, 22 Mar 2024 07:16:39 GMT
+Content-Type: application/json
+Vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+X-Content-Type-Options: nosniff, nosniff
+X-XSS-Protection: 1; mode=block, 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Server: oidc
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+Transfer-Encoding: chunked
+
+{"nextSteps":[]}
+
+-----------------------OIDC p2-------------------------
+
+Calling the postlogin
+
+---------------- request ----------------
+GET https://oidc-pprod.pps.co.za/oidcv2/postlogin.htm?client_id=ae318769-653a-4c62-8d24-dddbc971c585
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Cookie: dtCookie=v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0; opbs=3f605322-d7ec-4369-aeaf-27bc41358007; org.gluu.i18n.Locale=e                                                n; session_id=a9ef0bcb-14b8-4222-a1b3-5e2800725892; session_state=b60d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80; start_page=None; x_i                                                crypto_tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb2dpb                                                i9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG9rZW                                                5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iMt7HI                                                joscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr8FTj                                                IXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+
+None
+---------------- response ----------------
+302 Found https://oidc-pprod.pps.co.za/oidcv2/postlogin.htm?client_id=ae318769-653a-4c62-8d24-dddbc971c585
+Date: Fri, 22 Mar 2024 07:16:40 GMT
+Set-Cookie: X-Correlation-Id=3f9788fb-75e4-4650-997e-854717c0ffe1; Secure; HttpOnly, current_sessions=%5B%22f604d0df-7567-4649-ab7b-7c035b509a1d%22%5D; Path=/; Secure; HttpOnly; Expires=Sat                                                , 23 Mar 2024 07:16:40 +0000;, session_id=f604d0df-7567-4649-ab7b-7c035b509a1d; Path=/; Secure; HttpOnly; Expires=Sat, 23 Mar 2024 07:16:40 +0000;, session_state=b60d60cecb07a36e01c815a5f42                                                3fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80; Path=/; Secure; Expires=Sat, 23 Mar 2024 07:16:40 +0000;, opbs=3f605322-d7ec-4369-aeaf-27bc41358007; Path=/; Secu                                                re; Expires=Sat, 23 Mar 2024 07:16:40 +0000; ; SameSite=None
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Location: https://oidc-pprod.pps.co.za/jans-auth/authorize.htm?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&code_challenge_method=S256&redirect_uri=https%3A%                                                2F%2Fsso-pre.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&sid=bf37bf2a-fa76-4                                                7cd-ac71-a60a9b5b392c
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Content-Length: 0
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+
+
+
+Calling the authorize.htm
+
+---------------- request ----------------
+GET https://oidc-pprod.pps.co.za/jans-auth/authorize.htm?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&code_challenge_method=S256&redirect_uri=https%3A%2F%2Fs                                                so-pre.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&sid=bf37bf2a-fa76-47cd-ac                                                71-a60a9b5b392c
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Cookie: X-Correlation-Id=cc70e77f-4fc1-4e0d-91a4-2f8b1feb141e; rp_origin_id=https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc; dtCookie=v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_                                                perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0; current_sessions=%5B%22f604d0df-7567-4649-ab7b-7c035b509a1d%22%5D; opbs=3f605322-d7ec-4369-aeaf-27bc41358007; org.gluu.i18n.Loca                                                le=en; session_id=f604d0df-7567-4649-ab7b-7c035b509a1d; session_state=b60d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80; start_page=None;                                                 x_icrypto_tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb                                                2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG                                                9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iM                                                t7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr                                                8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+
+None
+---------------- response ----------------
+302 Found https://oidc-pprod.pps.co.za/jans-auth/authorize.htm?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&code_challenge_method=S256&redirect_uri=https%3A%                                                2F%2Fsso-pre.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&sid=bf37bf2a-fa76-4                                                7cd-ac71-a60a9b5b392c
+Date: Fri, 22 Mar 2024 07:16:40 GMT
+Set-Cookie: org.gluu.i18n.Locale=en; Path=/; Expires=Sat, 22-Mar-2025 07:16:40 GMT; Max-Age=31536000; Secure, current_sessions=%5B%22f604d0df-7567-4649-ab7b-7c035b509a1d%22%5D; Path=/; Secu                                                re; HttpOnly; Expires=Sat, 23 Mar 2024 07:16:40 +0000;, session_id=f604d0df-7567-4649-ab7b-7c035b509a1d; Path=/; Secure; HttpOnly; Expires=Sat, 23 Mar 2024 07:16:40 +0000;, session_state=b6                                                0d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80; Path=/; Secure; Expires=Sat, 23 Mar 2024 07:16:40 +0000;, opbs=3f605322-d7ec-4369-aeaf-2                                                7bc41358007; Path=/; Secure; Expires=Sat, 23 Mar 2024 07:16:40 +0000; ; SameSite=None
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Location: https://oidc-pprod.pps.co.za/jans-auth/restv1/authorize?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&code_challenge_method=S256&redirect_uri=https%                                                3A%2F%2Fsso-pre.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&sid=bf37bf2a-fa7                                                6-47cd-ac71-a60a9b5b392c
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Content-Length: 0
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+
+
+
+Calling the authorize call
+
+---------------- request ----------------
+GET https://oidc-pprod.pps.co.za/jans-auth/restv1/authorize?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&code_challenge_method=S256&redirect_uri=https%3A%2F%                                                2Fsso-pre.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&sid=bf37bf2a-fa76-47cd                                                -ac71-a60a9b5b392c
+user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Cookie: X-Correlation-Id=cc70e77f-4fc1-4e0d-91a4-2f8b1feb141e; rp_origin_id=https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc; dtCookie=v_4_srv_9_sn_2695D937FBD2324A0C830CD8BF8F88F8_                                                perc_100000_ol_0_mul_1_app-3A01cdf7d0f578ec25_1_rcs-3Acss_0; current_sessions=%5B%22f604d0df-7567-4649-ab7b-7c035b509a1d%22%5D; opbs=3f605322-d7ec-4369-aeaf-27bc41358007; org.gluu.i18n.Loca                                                le=en; session_id=f604d0df-7567-4649-ab7b-7c035b509a1d; session_state=b60d60cecb07a36e01c815a5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80; start_page=None;                                                 x_icrypto_tai=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL3Nzby1wcmUucHBzLmNvLnphL3Nzby1sb                                                2dpbi9sb2dpbiIsInN1YiI6InVua25vd24iLCJzY29wZSI6WyJhdXRobiIsIm1mYSJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2Vzc2lvbklkIjoiMmE5MzgzMzEtZmRiNy00NTk4LTk1YjAtOWYxZTM1NTMwY2UwIiwidG                                                9rZW5fdHlwZSI6IkJlYXJlciIsImV4cCI6MTcxMTA5ODk5NywiaWF0IjoxNzExMDkxNzk3LCJjbGllbnRfaWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUifQ.TVozNsspUgCW-wYaGcx2R-WyJdZOM8rtpFx63vSVqfbDb6iM                                                t7HIjoscYc8TCMD9NlDqTWFio1HfYiqJ5WIAbOGL0xEyDt6ab-u7H_-zQZ2685dmMOgUzePjyyH02qx7_g2oOWP9zszojaHqtju_GkDmcGUoejFiTNqfFa8cIfeTxlvh_omGXzB6A-yjix4CQtlN_ECnMlczQbt5LpAZz99ukyC4LWkDapv6_4KsQmhwr                                                8FTjIXlbudat59SddjdTmmEeVrI7SeQkY_56WDfb2H7GcNKMP60LNQiEkVwSm5_qcYoXSX5vE8FnLMQnDKfANl3V1h9cPbBQHUUcYAs-g
+
+None
+---------------- response ----------------
+302 Found https://oidc-pprod.pps.co.za/jans-auth/restv1/authorize?scope=openid+sparkle+email+profit&acr_values=icrypto_auth&response_type=code&code_challenge_method=S256&redirect_uri=https%                                                3A%2F%2Fsso-pre.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foidc&client_id=ae318769-653a-4c62-8d24-dddbc971c585&code_challenge=xraDY9xesjgzFNROMbSuQyf9FpMDUb8Cndg_MDiK-B8&sid=bf37bf2a-fa7                                                6-47cd-ac71-a60a9b5b392c
+Date: Fri, 22 Mar 2024 07:16:40 GMT
+Location: https://sso-pre.pps.co.za/sso-bff/login/oauth2/code/oidc?code=0ba81905-c179-436e-a092-ff9349f110f2&acr_values=icrypto_auth&scope=openid+email&session_state=b60d60cecb07a36e01c815a                                                5f423fd446ebccc822b1d11e7f359a80dbc1b8a38.09f4722b-9bec-4d57-8a59-f07ee40f8a80
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Content-Length: 0
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+
+
+-----------------------Client-------------------------
+
+Authorization code received: 0ba81905-c179-436e-a092-ff9349f110f2
+
+Calling token endpoint to get tokens
+
+---------------- request ----------------
+POST https://oidc-pprod.pps.co.za/oidcv2/restv1/token
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Length: 249
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic YWUzMTg3NjktNjUzYS00YzYyLThkMjQtZGRkYmM5NzFjNTg1Om53SWgweGZQVkU3QzBXRUpPaTFMWTRWVEJaaEJxNUNhd1QwTTUza3Y=
+
+grant_type=authorization_code&code=0ba81905-c179-436e-a092-ff9349f110f2&scope=openid+sparkle+email+profit&redirect_uri=https%3A%2F%2Fsso-pre.pps.co.za%2Fsso-bff%2Flogin%2Foauth2%2Fcode%2Foi                                                dc&code_verifier=HKFMnkdkjZjkJ5JyXYPyWXVnfuzuga7PKCcWy2SuS2D
+---------------- response ----------------
+200 OK https://oidc-pprod.pps.co.za/oidcv2/restv1/token
+Date: Fri, 22 Mar 2024 07:16:40 GMT
+Content-Type: application/json
+Content-Length: 2121
+Set-Cookie: X-Correlation-Id=18b12a63-bbae-4896-af7a-e812d224b82b; Secure; HttpOnly
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Cache-Control: no-store
+Pragma: no-cache
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+{"access_token":"eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk                                                3MWM1ODUiLCJhY3IiOiJpY3J5cHRvX2F1dGgiLCJzdWIiOiI4OTI0YTY2Ny1kMGMxLTQxNWYtOTMwMi01NmU2M2Q0MTA2NTMiLCJ4NXQjUzI1NiI6IiIsImNvZGUiOiI5NTA5NDMyMi05ZmQ2LTQ1MzQtODFlNi01MWVhOGYyMjMyN2EiLCJzY29wZSI6                                                WyJvcGVuaWQiLCJlbWFpbCJdLCJhdXRoX3RpbWUiOjE3MTEwOTE4MDAsImlzcyI6Imh0dHBzOi8vb2lkYy1wcHJvZC5wcHMuY28uemEiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNzExMDkyMTAwLCJpYXQiOjE3MTEwOTE4MDAsImNsaWVud                                                F9pZCI6ImFlMzE4NzY5LTY1M2EtNGM2Mi04ZDI0LWRkZGJjOTcxYzU4NSJ9.Jg7Zju45Q3XXjPtKqF7ZKXRqklibtjlcXCizzZoiJ1MkY9gaPFn-UlxGhwBWO01FIGZW1QEj2qHrsxScMM0M50ItARLQAVBEzvnzMJF6HkOM9CReaGH80QmnGch4Y94fB                                                XlyzliWw8H2KkL2Al02OU-nR4I3x6w-GCrvo3AOJ2uDHDW7U9V1FIR8EtHUqQzgW4axJbN1kMzckeiz4vzCpS5JT-hKhH6lmH1g0vf_fpiqX0koNZlbrq0FjCvxdcEbndwQWJkIuw657tWd-13Xcy48U5_e6dnAbWXedcBzl1qQqEo3HZK_XkR91g9lpT                                                6F3c7PA_S5-RWTxO49dfMcyw","scope":"openid email","id_token":"eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdF9                                                oYXNoIjoiU2FYTS1zTUFQVUxNcWttbGo5YW12dyIsInN1YiI6Ijg5MjRhNjY3LWQwYzEtNDE1Zi05MzAyLTU2ZTYzZDQxMDY1MyIsImFtciI6WyIxMCJdLCJpc3MiOiJodHRwczovL29pZGMtcHByb2QucHBzLmNvLnphIiwic2lkIjoiYmYzN2JmMmEt                                                ZmE3Ni00N2NkLWFjNzEtYTYwYTliNWIzOTJjIiwiamFuc09wZW5JRENvbm5lY3RWZXJzaW9uIjoib3BlbmlkY29ubmVjdC0xLjAiLCJhdWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUiLCJyYW5kb20iOiJlYjA1NjdiNi0yM                                                DEzLTRmNjMtYTA2ZC1kZjRkMjJmNjExM2MiLCJhY3IiOiJpY3J5cHRvX2F1dGgiLCJjX2hhc2giOiJ5VFo3UXk1OW1Oa0Rkemk1YUZaZ19RIiwiYXV0aF90aW1lIjoxNzExMDkxODAwLCJleHAiOjE3MTEwOTU0MDAsImdyYW50IjoiYXV0aG9yaXphdG                                                lvbl9jb2RlIiwiaWF0IjoxNzExMDkxODAwfQ.aVq0ULLbsXCcbKm6DkGe-S8GO5pjtsF0luxYJrWs06B_sgzRgCoXWw5diuqC-1f9qHIhjVYX6pkQENgDZhHhwnhPfrR88f8yNvjgzIHjYb339AWaIxa6D2xe2k5OM0h0NApXN9vxeB8ea1ccUB718Flp                                                v5L2FnysQbjD3a221fC5axuZiT4_ZHscCFfUZPMdTwAMJuMjcOwnLPHfZL772VEFQg-iST1dNAodyIdscmViWifuDsSOOYUjvO5UP_jfCmJ-kb6BMh36M5ktIoOyDnAe2AeKmZRiBP_Arc-4J1Okz7j6zaCnUdg442MP6D9RtzfWQKcFb0XluSjH8AlzW                                                A","token_type":"Bearer","expires_in":299}
+
+-----------------------Introspect-------------------------
+
+---------------- request ----------------
+POST https://oidc-pprod.pps.co.za/oidcv2/restv1/introspection
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Bearer eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZG                                                RiYzk3MWM1ODUiLCJhY3IiOiJpY3J5cHRvX2F1dGgiLCJzdWIiOiI4OTI0YTY2Ny1kMGMxLTQxNWYtOTMwMi01NmU2M2Q0MTA2NTMiLCJ4NXQjUzI1NiI6IiIsImNvZGUiOiI5NTA5NDMyMi05ZmQ2LTQ1MzQtODFlNi01MWVhOGYyMjMyN2EiLCJzY29                                                wZSI6WyJvcGVuaWQiLCJlbWFpbCJdLCJhdXRoX3RpbWUiOjE3MTEwOTE4MDAsImlzcyI6Imh0dHBzOi8vb2lkYy1wcHJvZC5wcHMuY28uemEiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNzExMDkyMTAwLCJpYXQiOjE3MTEwOTE4MDAsImNs                                                aWVudF9pZCI6ImFlMzE4NzY5LTY1M2EtNGM2Mi04ZDI0LWRkZGJjOTcxYzU4NSJ9.Jg7Zju45Q3XXjPtKqF7ZKXRqklibtjlcXCizzZoiJ1MkY9gaPFn-UlxGhwBWO01FIGZW1QEj2qHrsxScMM0M50ItARLQAVBEzvnzMJF6HkOM9CReaGH80QmnGch4                                                Y94fBXlyzliWw8H2KkL2Al02OU-nR4I3x6w-GCrvo3AOJ2uDHDW7U9V1FIR8EtHUqQzgW4axJbN1kMzckeiz4vzCpS5JT-hKhH6lmH1g0vf_fpiqX0koNZlbrq0FjCvxdcEbndwQWJkIuw657tWd-13Xcy48U5_e6dnAbWXedcBzl1qQqEo3HZK_XkR91                                                g9lpT6F3c7PA_S5-RWTxO49dfMcyw
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 958
+
+token=eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZGRiYzk3MWM1ODUiLC                                                JhY3IiOiJpY3J5cHRvX2F1dGgiLCJzdWIiOiI4OTI0YTY2Ny1kMGMxLTQxNWYtOTMwMi01NmU2M2Q0MTA2NTMiLCJ4NXQjUzI1NiI6IiIsImNvZGUiOiI5NTA5NDMyMi05ZmQ2LTQ1MzQtODFlNi01MWVhOGYyMjMyN2EiLCJzY29wZSI6WyJvcGVuaWQ                                                iLCJlbWFpbCJdLCJhdXRoX3RpbWUiOjE3MTEwOTE4MDAsImlzcyI6Imh0dHBzOi8vb2lkYy1wcHJvZC5wcHMuY28uemEiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNzExMDkyMTAwLCJpYXQiOjE3MTEwOTE4MDAsImNsaWVudF9pZCI6ImFl                                                MzE4NzY5LTY1M2EtNGM2Mi04ZDI0LWRkZGJjOTcxYzU4NSJ9.Jg7Zju45Q3XXjPtKqF7ZKXRqklibtjlcXCizzZoiJ1MkY9gaPFn-UlxGhwBWO01FIGZW1QEj2qHrsxScMM0M50ItARLQAVBEzvnzMJF6HkOM9CReaGH80QmnGch4Y94fBXlyzliWw8H2                                                KkL2Al02OU-nR4I3x6w-GCrvo3AOJ2uDHDW7U9V1FIR8EtHUqQzgW4axJbN1kMzckeiz4vzCpS5JT-hKhH6lmH1g0vf_fpiqX0koNZlbrq0FjCvxdcEbndwQWJkIuw657tWd-13Xcy48U5_e6dnAbWXedcBzl1qQqEo3HZK_XkR91g9lpT6F3c7PA_S5-                                                RWTxO49dfMcyw
+---------------- response ----------------
+200 OK https://oidc-pprod.pps.co.za/oidcv2/restv1/introspection
+Date: Fri, 22 Mar 2024 07:16:40 GMT
+Content-Type: application/json
+Content-Length: 404
+Set-Cookie: X-Correlation-Id=59c9650c-ab3d-4f13-becc-e328136abf58; Secure; HttpOnly
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+{"sub":"8924a667-d0c1-415f-9302-56e63d410653","iss":"https://oidc-pprod.pps.co.za","active":true,"token_type":"Bearer","client_id":"ae318769-653a-4c62-8d24-dddbc971c585","aud":"ae318769-653                                                a-4c62-8d24-dddbc971c585","acr":"icrypto_auth","nbf":null,"scope":"openid email","auth_time":1711091800,"cnf":null,"exp":1711092100,"iat":1711091800,"jti":null,"username":"ae318769-653a-4c6                                                2-8d24-dddbc971c585_olab"}
+
+-----------------------UserInfo-------------------------
+
+---------------- request ----------------
+GET https://oidc-pprod.pps.co.za/oidcv2/restv1/userinfo
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Authorization: Bearer eyJraWQiOiJjb25uZWN0XzQ1YTk0MjA4LWI2ODktNGZhOS1iN2NlLTZiNzY5YTAxNmU4Ml9zaWdfcnMyNTYiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZTMxODc2OS02NTNhLTRjNjItOGQyNC1kZG                                                RiYzk3MWM1ODUiLCJhY3IiOiJpY3J5cHRvX2F1dGgiLCJzdWIiOiI4OTI0YTY2Ny1kMGMxLTQxNWYtOTMwMi01NmU2M2Q0MTA2NTMiLCJ4NXQjUzI1NiI6IiIsImNvZGUiOiI5NTA5NDMyMi05ZmQ2LTQ1MzQtODFlNi01MWVhOGYyMjMyN2EiLCJzY29                                                wZSI6WyJvcGVuaWQiLCJlbWFpbCJdLCJhdXRoX3RpbWUiOjE3MTEwOTE4MDAsImlzcyI6Imh0dHBzOi8vb2lkYy1wcHJvZC5wcHMuY28uemEiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiZXhwIjoxNzExMDkyMTAwLCJpYXQiOjE3MTEwOTE4MDAsImNs                                                aWVudF9pZCI6ImFlMzE4NzY5LTY1M2EtNGM2Mi04ZDI0LWRkZGJjOTcxYzU4NSJ9.Jg7Zju45Q3XXjPtKqF7ZKXRqklibtjlcXCizzZoiJ1MkY9gaPFn-UlxGhwBWO01FIGZW1QEj2qHrsxScMM0M50ItARLQAVBEzvnzMJF6HkOM9CReaGH80QmnGch4                                                Y94fBXlyzliWw8H2KkL2Al02OU-nR4I3x6w-GCrvo3AOJ2uDHDW7U9V1FIR8EtHUqQzgW4axJbN1kMzckeiz4vzCpS5JT-hKhH6lmH1g0vf_fpiqX0koNZlbrq0FjCvxdcEbndwQWJkIuw657tWd-13Xcy48U5_e6dnAbWXedcBzl1qQqEo3HZK_XkR91                                                g9lpT6F3c7PA_S5-RWTxO49dfMcyw
+
+None
+---------------- response ----------------
+200 OK https://oidc-pprod.pps.co.za/oidcv2/restv1/userinfo
+Date: Fri, 22 Mar 2024 07:16:40 GMT
+Content-Type: application/json;charset=utf-8
+Content-Length: 76
+Set-Cookie: X-Correlation-Id=a50982ed-680a-4c55-a76c-e25923d58aa6; Secure; HttpOnly
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Cache-Control: no-store, private
+Pragma: no-cache
+Server: oidc
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Via: 1.1 google
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+{"sub":"8924a667-d0c1-415f-9302-56e63d410653","email":"mujahid@icrypto.com"}
+
+Status code:  200
+Response headers:  {'Date': 'Fri, 22 Mar 2024 07:16:40 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '76', 'Set-Cookie': 'X-Correlation-Id=a50982ed-680a-4c55-a76                                                c-e25923d58aa6; Secure; HttpOnly', 'Expires': 'Thu, 01 Jan 1970 00:00:00 GMT', 'Cache-Control': 'no-store, private', 'Pragma': 'no-cache', 'Server': 'oidc', 'X-Xss-Protection': '1; mode=blo                                                ck', 'X-Content-Type-Options': 'nosniff', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'Via': '1.1 google', 'Alt-Svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000                                                '}
+Response body:  {"sub":"8924a667-d0c1-415f-9302-56e63d410653","email":"mujahid@icrypto.com"}
+
+==============================

@@ -1,0 +1,23 @@
+{
+  "OIDC_VERSION": "oidc",
+  "OIDC_URL": "https://stg-oidc.pps.co.za",
+  "EXT_AUTH_URL": "https://stg-sidas.pps.co.za/api/authn",
+  "USE_CASES": [
+    {
+      "NAME": "kafka-stage",
+      "CLIENT_ID": "1kafka-l536-6734-9kh7-1019r66p2873",
+      "CLIENT_SECRET": "18bg2592-75rt-2197-7f2h-9f226a9fa4y7",
+      "USERNAME": "cjulius",
+      "PASSWORD": "Password@123",
+      "REDIRECT_URL": "https://sso-staging.pps.co.za/kafka-error-handler/login/oauth2/code/oidc",
+      "SCOPES": [
+        "openid",
+        "sparkle",
+        "email",
+        "profile",
+        "profit"
+      ],
+      "TOKEN_AUTH_TYPE": "client_secret_basic"
+    }
+    ]
+}
