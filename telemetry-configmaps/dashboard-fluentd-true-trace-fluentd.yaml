@@ -1,0 +1,3203 @@
+apiVersion: v1
+data:
+  fluentd.json: |-
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "$DS_PROMETHEUS",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "description": "fluentd 1.x deployed in kubernetes and scraped by prometheus",
+      "editable": true,
+      "gnetId": 13042,
+      "graphTooltip": 1,
+      "iteration": 1613145081841,
+      "links": [],
+      "panels": [
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 0
+          },
+          "id": 19,
+          "panels": [],
+          "title": "General",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "If you see errors then you probbaly have serious issues with log processing, see https://docs.fluentd.org/buffer#handling-unrecoverable-errors\n\nRetries are normal but should occur only from time to time, otherwise check for network errors or destination is too slow and requires additional tuning per given provider.",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 0,
+            "y": 1
+          },
+          "hiddenSeries": false,
+          "id": 14,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Error.*/",
+              "color": "#E02F44"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_retry_count{pod=~\"$pod\"}[1m]))",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "Retry rate",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(rate(fluentd_output_status_num_errors{pod=~\"$pod\"}[1m]))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Error rate",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Fluentd output error/retry rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "Input  and output total rates",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 8,
+            "y": 1
+          },
+          "hiddenSeries": false,
+          "id": 44,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_input_status_num_records_total{pod=~\"$pod\"}[1m]))",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "input",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(rate(fluentd_output_status_write_count{pod=~\"$pod\"}[1m]))",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "output",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Input /  output rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "This should not reach 0 otherwise logs are blocked from processing or even dropped",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 16,
+            "y": 1
+          },
+          "hiddenSeries": false,
+          "id": 20,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "min(fluentd_output_status_buffer_available_space_ratio)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "lowest across all hosts",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "fluentd output status buffer available space ratio",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "total flush time",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 0,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 21,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "count",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_flush_time_count{pod=~\"$pod\"}[1m]))",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "time",
+              "refId": "A"
+            },
+            {
+              "expr": "sum(rate(fluentd_output_status_slow_flush_count[1m]))",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "count",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "fluentd output status flush time count rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "Current total size of stage and queue buffers.\nfluentd_output_status_buffer_total_bytes",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 8,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 13,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_buffer_total_bytes) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current total size of stage and queue buffers.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 16,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_buffer_queue_length)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "total",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Fluentd output buffer queue",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 11
+          },
+          "id": 17,
+          "panels": [],
+          "title": "Input details",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_input_status_num_records_total",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 39,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_input_status_num_records_total{pod=~\"$pod\"}[1m])) ",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "total",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Input entries rate (total)",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_input_status_num_records_total",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 47,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_input_status_num_records_total{pod=~\"$pod\"}[1m])) by (hostname)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{hostname}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Input entries rate per hostname",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_input_status_num_records_total",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 18
+          },
+          "hiddenSeries": false,
+          "id": 60,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_input_status_num_records_total{pod=~\"$pod\"}[1m])) by (namespace)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{namespace}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Input entries rate per namespace",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_input_status_num_records_total",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 18
+          },
+          "hiddenSeries": false,
+          "id": 48,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_input_status_num_records_total{pod=~\"$pod\"}[1m])) by (instance)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{namespace}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Input entries rate per instance",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 24
+          },
+          "id": 59,
+          "panels": [],
+          "title": "Input details (warning, very slow!)",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_input_status_num_records_total",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 25
+          },
+          "hiddenSeries": false,
+          "id": 49,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_input_status_num_records_total{pod=~\"$pod\"}[1m])) by (tag)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{tag}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Input entries rate per tag",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 31
+          },
+          "id": 41,
+          "panels": [],
+          "title": "Buffer Stage",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_buffer_stage_length",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 32
+          },
+          "hiddenSeries": false,
+          "id": 22,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_buffer_stage_length) by (pod, type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current length of stage buffers.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_buffer_stage_byte_size",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 32
+          },
+          "hiddenSeries": false,
+          "id": 23,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_buffer_stage_byte_size) by (pod, type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current total size of stage buffers.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 38
+          },
+          "id": 43,
+          "panels": [],
+          "title": "Buffer Queue",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 39
+          },
+          "hiddenSeries": false,
+          "id": 50,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "max_over_time(fluentd_output_status_buffer_queue_length[1m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Maximum buffer length in last 1min",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 39
+          },
+          "hiddenSeries": false,
+          "id": 25,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "max_over_time(fluentd_output_status_buffer_total_bytes[1m])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Maximum buffer bytes in last 1min",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_buffer_queue_length",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 45
+          },
+          "hiddenSeries": false,
+          "id": 24,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_buffer_queue_length) by (pod, type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current length of queue buffers.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_queue_byte_size",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 45
+          },
+          "hiddenSeries": false,
+          "id": 51,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_queue_byte_size) by (pod, type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current total size of queue buffers.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "collapsed": true,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 51
+          },
+          "id": 46,
+          "panels": [
+            {
+              "aliasColors": {},
+              "bars": false,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "$DS_PROMETHEUS",
+              "description": "fluentd_output_status_buffer_available_space_ratio",
+              "fill": 1,
+              "fillGradient": 0,
+              "gridPos": {
+                "h": 6,
+                "w": 12,
+                "x": 0,
+                "y": 52
+              },
+              "hiddenSeries": false,
+              "id": 26,
+              "legend": {
+                "alignAsTable": false,
+                "avg": false,
+                "current": true,
+                "max": true,
+                "min": true,
+                "rightSide": false,
+                "show": false,
+                "sort": "current",
+                "sortDesc": true,
+                "total": false,
+                "values": true
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "null",
+              "options": {
+                "dataLinks": []
+              },
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [],
+              "spaceLength": 10,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "expr": "sum(fluentd_output_status_buffer_available_space_ratio) by (pod, type)",
+                  "format": "time_series",
+                  "hide": false,
+                  "interval": "",
+                  "intervalFactor": 1,
+                  "legendFormat": "{{pod}} {{ type }}",
+                  "refId": "A"
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": null,
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "Ratio of available space in buffer.",
+              "tooltip": {
+                "shared": true,
+                "sort": 2,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "format": "percent",
+                  "label": null,
+                  "logBase": 1,
+                  "max": "100",
+                  "min": "0",
+                  "show": true
+                },
+                {
+                  "format": "short",
+                  "label": null,
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            }
+          ],
+          "title": "Buffer Space",
+          "type": "row"
+        },
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 52
+          },
+          "id": 53,
+          "panels": [],
+          "title": "Buffer Retries",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_retry_count",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 53
+          },
+          "hiddenSeries": false,
+          "id": 30,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_retry_count{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current retry counts.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_emit_records",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 53
+          },
+          "hiddenSeries": false,
+          "id": 33,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_emit_records{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current emit records",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_emit_count",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 59
+          },
+          "hiddenSeries": false,
+          "id": 32,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_emit_count{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current emit counts rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_rollback_count",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 59
+          },
+          "hiddenSeries": false,
+          "id": 35,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_rollback_count{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current rollback counts",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_write_count",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 65
+          },
+          "hiddenSeries": false,
+          "id": 34,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_write_count{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current write counts",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_slow_flush_count",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 65
+          },
+          "hiddenSeries": false,
+          "id": 37,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_slow_flush_count{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current slow flush counts",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_retry_wait",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 71
+          },
+          "hiddenSeries": false,
+          "id": 38,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_retry_wait{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current retry wait",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_flush_time_count",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 71
+          },
+          "hiddenSeries": false,
+          "id": 36,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_flush_time_count{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Total flush time",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 77
+          },
+          "id": 57,
+          "panels": [],
+          "title": "Buffer Errors",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_num_errors",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 78
+          },
+          "hiddenSeries": false,
+          "id": 31,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(fluentd_output_status_num_errors{pod=~\"$pod\"}[1m])) by (type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Current number of errors rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "collapsed": false,
+          "datasource": "$DS_PROMETHEUS",
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 84
+          },
+          "id": 55,
+          "panels": [],
+          "title": "Buffer timekeys",
+          "type": "row"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 85
+          },
+          "hiddenSeries": false,
+          "id": 29,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "fluentd_output_status_buffer_newest_timekey - fluentd_output_status_buffer_oldest_timekey",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Timekey diff",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_buffer_newest_timekey",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 85
+          },
+          "hiddenSeries": false,
+          "id": 27,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_buffer_newest_timekey) by (pod, type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Newest timekey in buffer.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$DS_PROMETHEUS",
+          "description": "fluentd_output_status_buffer_oldest_timekey",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 91
+          },
+          "hiddenSeries": false,
+          "id": 28,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": false,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(fluentd_output_status_buffer_oldest_timekey) by (pod, type)",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{pod}} {{ type }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Oldest timekey in buffer.",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "refresh": "10s",
+      "schemaVersion": 20,
+      "style": "dark",
+      "tags": [
+        "fluentd",
+        "logging"
+      ],
+      "templating": {
+        "list": [
+          {
+            "current": {
+              "text": "Prometheus",
+              "value": "Prometheus"
+            },
+            "hide": 0,
+            "includeAll": false,
+            "label": "Datasource",
+            "multi": false,
+            "name": "DS_PROMETHEUS",
+            "options": [],
+            "query": "prometheus",
+            "queryValue": "",
+            "refresh": 1,
+            "regex": "",
+            "skipUrlSync": false,
+            "type": "datasource"
+          },
+          {
+            "allValue": null,
+            "current": {
+              "text": "All",
+              "value": "$__all"
+            },
+            "datasource": "$DS_PROMETHEUS",
+            "definition": "label_values(kube_pod_info{pod=~\".*fluentd.*\"}, pod)",
+            "hide": 0,
+            "includeAll": true,
+            "label": "pod",
+            "multi": false,
+            "name": "pod",
+            "options": [],
+            "query": "label_values(kube_pod_info{pod=~\".*fluentd.*\"}, pod)",
+            "refresh": 2,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "tagValuesQuery": "",
+            "tags": [],
+            "tagsQuery": "",
+            "type": "query",
+            "useTags": false
+          }
+        ]
+      },
+      "time": {
+        "from": "now-24h",
+        "to": "now"
+      },
+      "timepicker": {
+        "refresh_intervals": [
+          "5s",
+          "10s",
+          "30s",
+          "1m",
+          "5m",
+          "15m",
+          "30m",
+          "1h",
+          "2h",
+          "1d"
+        ],
+        "time_options": [
+          "5m",
+          "15m",
+          "1h",
+          "6h",
+          "12h",
+          "24h",
+          "2d",
+          "7d",
+          "30d"
+        ]
+      },
+      "timezone": "utc",
+      "title": "Fluentd 1.x",
+      "uid": "bNn5LUtizs3",
+      "version": 1
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: true-trace-fluentd:/ConfigMap:logging/dashboard-fluentd-true-trace-fluentd
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"fluentd.json":"{\n  \"annotations\": {\n    \"list\": [\n      {\n        \"builtIn\": 1,\n        \"datasource\": \"$DS_PROMETHEUS\",\n        \"enable\": true,\n        \"hide\": true,\n        \"iconColor\": \"rgba(0, 211, 255, 1)\",\n        \"name\": \"Annotations \u0026 Alerts\",\n        \"type\": \"dashboard\"\n      }\n    ]\n  },\n  \"description\": \"fluentd 1.x deployed in kubernetes and scraped by prometheus\",\n  \"editable\": true,\n  \"gnetId\": 13042,\n  \"graphTooltip\": 1,\n  \"iteration\": 1613145081841,\n  \"links\": [],\n  \"panels\": [\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 0\n      },\n      \"id\": 19,\n      \"panels\": [],\n      \"title\": \"General\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"If you see errors then you probbaly have serious issues with log processing, see https://docs.fluentd.org/buffer#handling-unrecoverable-errors\\n\\nRetries are normal but should occur only from time to time, otherwise check for network errors or destination is too slow and requires additional tuning per given provider.\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 1\n      },\n      \"hiddenSeries\": false,\n      \"id\": 14,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": true,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [\n        {\n          \"alias\": \"/Error.*/\",\n          \"color\": \"#E02F44\"\n        }\n      ],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_retry_count{pod=~\\\"$pod\\\"}[1m]))\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"Retry rate\",\n          \"refId\": \"A\"\n        },\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_num_errors{pod=~\\\"$pod\\\"}[1m]))\",\n          \"format\": \"time_series\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"Error rate\",\n          \"refId\": \"C\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Fluentd output error/retry rate\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"ops\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"Input  and output total rates\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 8,\n        \"x\": 8,\n        \"y\": 1\n      },\n      \"hiddenSeries\": false,\n      \"id\": 44,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": true,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_input_status_num_records_total{pod=~\\\"$pod\\\"}[1m]))\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"input\",\n          \"refId\": \"A\"\n        },\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_write_count{pod=~\\\"$pod\\\"}[1m]))\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"output\",\n          \"refId\": \"B\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Input /  output rate\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"This should not reach 0 otherwise logs are blocked from processing or even dropped\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 8,\n        \"x\": 16,\n        \"y\": 1\n      },\n      \"hiddenSeries\": false,\n      \"id\": 20,\n      \"legend\": {\n        \"alignAsTable\": true,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": false,\n        \"min\": false,\n        \"rightSide\": true,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"min(fluentd_output_status_buffer_available_space_ratio)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"lowest across all hosts\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"fluentd output status buffer available space ratio\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"decimals\": 0,\n          \"format\": \"percent\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": \"100\",\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"decimals\": 0,\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"total flush time\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 6\n      },\n      \"hiddenSeries\": false,\n      \"id\": 21,\n      \"legend\": {\n        \"alignAsTable\": true,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": false,\n        \"min\": false,\n        \"rightSide\": true,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [\n        {\n          \"alias\": \"count\",\n          \"yaxis\": 2\n        }\n      ],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_flush_time_count{pod=~\\\"$pod\\\"}[1m]))\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"time\",\n          \"refId\": \"A\"\n        },\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_slow_flush_count[1m]))\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"count\",\n          \"refId\": \"B\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"fluentd output status flush time count rate\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"decimals\": 0,\n          \"format\": \"ms\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"decimals\": 0,\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"Current total size of stage and queue buffers.\\nfluentd_output_status_buffer_total_bytes\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 8,\n        \"x\": 8,\n        \"y\": 6\n      },\n      \"hiddenSeries\": false,\n      \"id\": 13,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": true,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_buffer_total_bytes) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current total size of stage and queue buffers.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"bytes\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 8,\n        \"x\": 16,\n        \"y\": 6\n      },\n      \"hiddenSeries\": false,\n      \"id\": 15,\n      \"legend\": {\n        \"alignAsTable\": true,\n        \"avg\": true,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_buffer_queue_length)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"total\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Fluentd output buffer queue\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 11\n      },\n      \"id\": 17,\n      \"panels\": [],\n      \"title\": \"Input details\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_input_status_num_records_total\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 12\n      },\n      \"hiddenSeries\": false,\n      \"id\": 39,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": true,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_input_status_num_records_total{pod=~\\\"$pod\\\"}[1m])) \",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"total\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Input entries rate (total)\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_input_status_num_records_total\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 12\n      },\n      \"hiddenSeries\": false,\n      \"id\": 47,\n      \"interval\": \"\",\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": true,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_input_status_num_records_total{pod=~\\\"$pod\\\"}[1m])) by (hostname)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{hostname}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Input entries rate per hostname\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_input_status_num_records_total\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 18\n      },\n      \"hiddenSeries\": false,\n      \"id\": 60,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_input_status_num_records_total{pod=~\\\"$pod\\\"}[1m])) by (namespace)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{namespace}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Input entries rate per namespace\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_input_status_num_records_total\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 18\n      },\n      \"hiddenSeries\": false,\n      \"id\": 48,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_input_status_num_records_total{pod=~\\\"$pod\\\"}[1m])) by (instance)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{namespace}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Input entries rate per instance\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 24\n      },\n      \"id\": 59,\n      \"panels\": [],\n      \"title\": \"Input details (warning, very slow!)\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_input_status_num_records_total\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 25\n      },\n      \"hiddenSeries\": false,\n      \"id\": 49,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_input_status_num_records_total{pod=~\\\"$pod\\\"}[1m])) by (tag)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{tag}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Input entries rate per tag\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 31\n      },\n      \"id\": 41,\n      \"panels\": [],\n      \"title\": \"Buffer Stage\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_buffer_stage_length\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 32\n      },\n      \"hiddenSeries\": false,\n      \"id\": 22,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_buffer_stage_length) by (pod, type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current length of stage buffers.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_buffer_stage_byte_size\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 32\n      },\n      \"hiddenSeries\": false,\n      \"id\": 23,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_buffer_stage_byte_size) by (pod, type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current total size of stage buffers.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"bytes\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 38\n      },\n      \"id\": 43,\n      \"panels\": [],\n      \"title\": \"Buffer Queue\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 39\n      },\n      \"hiddenSeries\": false,\n      \"id\": 50,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"max_over_time(fluentd_output_status_buffer_queue_length[1m])\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Maximum buffer length in last 1min\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 39\n      },\n      \"hiddenSeries\": false,\n      \"id\": 25,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"max_over_time(fluentd_output_status_buffer_total_bytes[1m])\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Maximum buffer bytes in last 1min\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"bytes\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_buffer_queue_length\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 45\n      },\n      \"hiddenSeries\": false,\n      \"id\": 24,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_buffer_queue_length) by (pod, type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current length of queue buffers.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_queue_byte_size\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 45\n      },\n      \"hiddenSeries\": false,\n      \"id\": 51,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_queue_byte_size) by (pod, type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current total size of queue buffers.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"bytes\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": true,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 51\n      },\n      \"id\": 46,\n      \"panels\": [\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\": \"$DS_PROMETHEUS\",\n          \"description\": \"fluentd_output_status_buffer_available_space_ratio\",\n          \"fill\": 1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\": 6,\n            \"w\": 12,\n            \"x\": 0,\n            \"y\": 52\n          },\n          \"hiddenSeries\": false,\n          \"id\": 26,\n          \"legend\": {\n            \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\": true,\n            \"max\": true,\n            \"min\": true,\n            \"rightSide\": false,\n            \"show\": false,\n            \"sort\": \"current\",\n            \"sortDesc\": true,\n            \"total\": false,\n            \"values\": true\n          },\n          \"lines\": true,\n          \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\": \"null\",\n          \"options\": {\n            \"dataLinks\": []\n          },\n          \"percentage\": false,\n          \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\": [\n            {\n              \"expr\": \"sum(fluentd_output_status_buffer_available_space_ratio) by (pod, type)\",\n              \"format\": \"time_series\",\n              \"hide\": false,\n              \"interval\": \"\",\n              \"intervalFactor\": 1,\n              \"legendFormat\": \"{{pod}} {{ type }}\",\n              \"refId\": \"A\"\n            }\n          ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\": [],\n          \"timeShift\": null,\n          \"title\": \"Ratio of available space in buffer.\",\n          \"tooltip\": {\n            \"shared\": true,\n            \"sort\": 2,\n            \"value_type\": \"individual\"\n          },\n          \"type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\": \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\": []\n          },\n          \"yaxes\": [\n            {\n              \"format\": \"percent\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\": \"100\",\n              \"min\": \"0\",\n              \"show\": true\n            },\n            {\n              \"format\": \"short\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\": null,\n              \"show\": true\n            }\n          ],\n          \"yaxis\": {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n        }\n      ],\n      \"title\": \"Buffer Space\",\n      \"type\": \"row\"\n    },\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 52\n      },\n      \"id\": 53,\n      \"panels\": [],\n      \"title\": \"Buffer Retries\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_retry_count\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 53\n      },\n      \"hiddenSeries\": false,\n      \"id\": 30,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_retry_count{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current retry counts.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_emit_records\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 53\n      },\n      \"hiddenSeries\": false,\n      \"id\": 33,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_emit_records{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current emit records\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_emit_count\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 59\n      },\n      \"hiddenSeries\": false,\n      \"id\": 32,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_emit_count{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current emit counts rate\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_rollback_count\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 59\n      },\n      \"hiddenSeries\": false,\n      \"id\": 35,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_rollback_count{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current rollback counts\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_write_count\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 65\n      },\n      \"hiddenSeries\": false,\n      \"id\": 34,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_write_count{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current write counts\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_slow_flush_count\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 65\n      },\n      \"hiddenSeries\": false,\n      \"id\": 37,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_slow_flush_count{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current slow flush counts\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_retry_wait\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 71\n      },\n      \"hiddenSeries\": false,\n      \"id\": 38,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_retry_wait{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current retry wait\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_flush_time_count\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 71\n      },\n      \"hiddenSeries\": false,\n      \"id\": 36,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_flush_time_count{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Total flush time\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"ms\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 77\n      },\n      \"id\": 57,\n      \"panels\": [],\n      \"title\": \"Buffer Errors\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_num_errors\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 78\n      },\n      \"hiddenSeries\": false,\n      \"id\": 31,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(fluentd_output_status_num_errors{pod=~\\\"$pod\\\"}[1m])) by (type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Current number of errors rate\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 84\n      },\n      \"id\": 55,\n      \"panels\": [],\n      \"title\": \"Buffer timekeys\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 85\n      },\n      \"hiddenSeries\": false,\n      \"id\": 29,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"fluentd_output_status_buffer_newest_timekey - fluentd_output_status_buffer_oldest_timekey\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Timekey diff\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_buffer_newest_timekey\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 85\n      },\n      \"hiddenSeries\": false,\n      \"id\": 27,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_buffer_newest_timekey) by (pod, type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Newest timekey in buffer.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"$DS_PROMETHEUS\",\n      \"description\": \"fluentd_output_status_buffer_oldest_timekey\",\n      \"fill\": 1,\n      \"fillGradient\": 0,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 91\n      },\n      \"hiddenSeries\": false,\n      \"id\": 28,\n      \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\": false,\n        \"show\": false,\n        \"sort\": \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"options\": {\n        \"dataLinks\": []\n      },\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(fluentd_output_status_buffer_oldest_timekey) by (pod, type)\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{pod}} {{ type }}\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeRegions\": [],\n      \"timeShift\": null,\n      \"title\": \"Oldest timekey in buffer.\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n      }\n    }\n  ],\n  \"refresh\": \"10s\",\n  \"schemaVersion\": 20,\n  \"style\": \"dark\",\n  \"tags\": [\n    \"fluentd\",\n    \"logging\"\n  ],\n  \"templating\": {\n    \"list\": [\n      {\n        \"current\": {\n          \"text\": \"Prometheus\",\n          \"value\": \"Prometheus\"\n        },\n        \"hide\": 0,\n        \"includeAll\": false,\n        \"label\": \"Datasource\",\n        \"multi\": false,\n        \"name\": \"DS_PROMETHEUS\",\n        \"options\": [],\n        \"query\": \"prometheus\",\n        \"queryValue\": \"\",\n        \"refresh\": 1,\n        \"regex\": \"\",\n        \"skipUrlSync\": false,\n        \"type\": \"datasource\"\n      },\n      {\n        \"allValue\": null,\n        \"current\": {\n          \"text\": \"All\",\n          \"value\": \"$__all\"\n        },\n        \"datasource\": \"$DS_PROMETHEUS\",\n        \"definition\": \"label_values(kube_pod_info{pod=~\\\".*fluentd.*\\\"}, pod)\",\n        \"hide\": 0,\n        \"includeAll\": true,\n        \"label\": \"pod\",\n        \"multi\": false,\n        \"name\": \"pod\",\n        \"options\": [],\n        \"query\": \"label_values(kube_pod_info{pod=~\\\".*fluentd.*\\\"}, pod)\",\n        \"refresh\": 2,\n        \"regex\": \"\",\n        \"skipUrlSync\": false,\n        \"sort\": 0,\n        \"tagValuesQuery\": \"\",\n        \"tags\": [],\n        \"tagsQuery\": \"\",\n        \"type\": \"query\",\n        \"useTags\": false\n      }\n    ]\n  },\n  \"time\": {\n    \"from\": \"now-24h\",\n    \"to\": \"now\"\n  },\n  \"timepicker\": {\n    \"refresh_intervals\": [\n      \"5s\",\n      \"10s\",\n      \"30s\",\n      \"1m\",\n      \"5m\",\n      \"15m\",\n      \"30m\",\n      \"1h\",\n      \"2h\",\n      \"1d\"\n    ],\n    \"time_options\": [\n      \"5m\",\n      \"15m\",\n      \"1h\",\n      \"6h\",\n      \"12h\",\n      \"24h\",\n      \"2d\",\n      \"7d\",\n      \"30d\"\n    ]\n  },\n  \"timezone\": \"utc\",\n  \"title\": \"Fluentd 1.x\",\n  \"uid\": \"bNn5LUtizs3\",\n  \"version\": 1\n}"},"kind":"ConfigMap","metadata":{"annotations":{"argocd.argoproj.io/tracking-id":"true-trace-fluentd:/ConfigMap:logging/dashboard-fluentd-true-trace-fluentd"},"labels":{"app.kubernetes.io/instance":"true-trace-fluentd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"true-trace-fluentd","app.kubernetes.io/version":"img.1.0.5","grafana_dashboard":"1","helm.sh/chart":"true-trace-fluentd-1.0.5-pps"},"name":"dashboard-fluentd-true-trace-fluentd","namespace":"logging"}}
+  labels:
+    app.kubernetes.io/instance: true-trace-fluentd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: true-trace-fluentd
+    app.kubernetes.io/version: img.1.0.5
+    grafana_dashboard: "1"
+    helm.sh/chart: true-trace-fluentd-1.0.5-pps
+  name: dashboard-fluentd-true-trace-fluentd
+  namespace: logging
