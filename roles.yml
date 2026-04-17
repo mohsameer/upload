@@ -1,0 +1,43 @@
+_meta:
+  type: "roles"
+  config_version: 2
+
+data_prepper:
+  description: "Role used by Data Prepper to ingest logs, traces and metrics"
+  cluster_permissions:
+    - "cluster_monitor"
+    - "cluster_composite_ops"
+    - "indices:admin/template/*"
+    - "indices:admin/index_template/*"
+    - "indices:admin/aliases*"
+  index_permissions:
+    - index_patterns:
+        - "logs-*"
+        - "traces-*"
+        - "metrics-*"
+        - "ss4o-*"
+      allowed_actions:
+        - "crud"
+        - "create_index"
+        - "manage"
+
+read_only:
+  description: "Read-only access to all indices"
+  cluster_permissions:
+    - "cluster_monitor"
+  index_permissions:
+    - index_patterns:
+        - "*"
+      allowed_actions:
+        - "read"
+
+dashboards_user:
+  description: "OpenSearch Dashboards user"
+  cluster_permissions:
+    - "cluster_monitor"
+  index_permissions:
+    - index_patterns:
+        - "*"
+      allowed_actions:
+        - "read"
+

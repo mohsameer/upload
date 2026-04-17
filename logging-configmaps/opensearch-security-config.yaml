@@ -25,7 +25,7 @@ data:
               config:
                 subject_key: sub
                 roles_key: "cognito:groups"
-                openid_connect_url: "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_Ll3NMuHQU/.well-known/openid-configuration"
+                openid_connect_url: "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_UVWzBuUvN/.well-known/openid-configuration"
             authentication_backend:
               type: noop
               config: {}

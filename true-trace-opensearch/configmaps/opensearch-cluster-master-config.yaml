@@ -1,0 +1,42 @@
+apiVersion: v1
+data:
+  opensearch.yml: |
+    cluster.name: true-trace-cluster
+    network.host: 0.0.0.0
+
+    bootstrap.memory_lock: "false" # along with the memlock settings below, disables swapping
+
+    cluster.routing.allocation.disk.threshold_enabled: true
+    cluster.routing.allocation.disk.watermark.low: 93%
+    cluster.routing.allocation.disk.watermark.high: 95%
+
+    plugins.security.allow_unsafe_democertificates: true
+    plugins.security.ssl.http.enabled: true
+    plugins.security.ssl.http.pemtrustedcas_filepath: /usr/share/opensearch/config/certs/ca.pem
+    plugins.security.ssl.transport.enabled: true
+    plugins.security.ssl.transport.pemtrustedcas_filepath: /usr/share/opensearch/config/certs/ca.pem
+    plugins.security.ssl.transport.enforce_hostname_verification: false
+    plugins.security.ssl.transport.pemkey_filepath: /usr/share/opensearch/config/certs/tls.key # relative path
+    plugins.security.ssl.transport.pemcert_filepath: /usr/share/opensearch/config/certs/tls.pem
+    plugins.security.ssl.http.pemkey_filepath: /usr/share/opensearch/config/certs/tls.key
+    plugins.security.ssl.http.pemcert_filepath: /usr/share/opensearch/config/certs/tls.pem
+    plugins.security.nodes_dn:
+      - "CN=icrypto"
+
+    plugins.security.authcz.admin_dn:
+      - 'CN=icrypto'
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: true-trace-opensearch:/ConfigMap:logging/opensearch-cluster-master-config
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"opensearch.yml":"cluster.name: true-trace-cluster\nnetwork.host: 0.0.0.0\n\nbootstrap.memory_lock: \"false\" # along with the memlock settings below, disables swapping\n\ncluster.routing.allocation.disk.threshold_enabled: true\ncluster.routing.allocation.disk.watermark.low: 93%\ncluster.routing.allocation.disk.watermark.high: 95%\n\nplugins.security.allow_unsafe_democertificates: true\nplugins.security.ssl.http.enabled: true\nplugins.security.ssl.http.pemtrustedcas_filepath: /usr/share/opensearch/config/certs/ca.pem\nplugins.security.ssl.transport.enabled: true\nplugins.security.ssl.transport.pemtrustedcas_filepath: /usr/share/opensearch/config/certs/ca.pem\nplugins.security.ssl.transport.enforce_hostname_verification: false\nplugins.security.ssl.transport.pemkey_filepath: /usr/share/opensearch/config/certs/tls.key # relative path\nplugins.security.ssl.transport.pemcert_filepath: /usr/share/opensearch/config/certs/tls.pem\nplugins.security.ssl.http.pemkey_filepath: /usr/share/opensearch/config/certs/tls.key\nplugins.security.ssl.http.pemcert_filepath: /usr/share/opensearch/config/certs/tls.pem\nplugins.security.nodes_dn:\n  - \"CN=icrypto\"\n\nplugins.security.authcz.admin_dn:\n  - 'CN=icrypto'\n"},"kind":"ConfigMap","metadata":{"annotations":{"argocd.argoproj.io/tracking-id":"true-trace-opensearch:/ConfigMap:logging/opensearch-cluster-master-config"},"labels":{"app.kubernetes.io/component":"opensearch-cluster-master","app.kubernetes.io/instance":"true-trace-opensearch","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"opensearch-cluster-master","app.kubernetes.io/version":"img.1.0.15","helm.sh/chart":"true-trace-opensearch-1.0.15-pps"},"name":"opensearch-cluster-master-config","namespace":"logging"}}
+  labels:
+    app.kubernetes.io/component: opensearch-cluster-master
+    app.kubernetes.io/instance: true-trace-opensearch
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: opensearch-cluster-master
+    app.kubernetes.io/version: img.1.0.15
+    helm.sh/chart: true-trace-opensearch-1.0.15-pps
+  name: opensearch-cluster-master-config
+  namespace: logging

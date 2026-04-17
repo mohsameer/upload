@@ -1,0 +1,28 @@
+_meta:
+  type: "rolesmapping"
+  config_version: 2
+
+all_access:
+  users:
+    - "admin"
+  backend_roles:
+    - "admin"
+
+data_prepper:
+  users:
+    - "data-prepper"
+  backend_roles:
+    - "data-prepper"
+
+read_only:
+  users:
+    - "readonly"
+  backend_roles:
+    - "readonly"
+
+dashboards_user:
+  users:
+    - "dashboards"
+  backend_roles:
+    - "dashboards"
+

@@ -1,0 +1,37 @@
+apiVersion: v1
+data:
+  ca.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIELTCCApWgAwIBAgIRAJMGbzHjYlK42P2VuqIsosIwDQYJKoZIhvcNAQELBQAw
+    LzEtMCsGA1UEAxMkM2MxM2VmZjctYmNjMy00ODNmLWJjYmMtMjdiM2U0ZGNhODc1
+    MCAXDTI1MDMwNTA2Mzk0NloYDzIwNTUwMjI2MDczOTQ2WjAvMS0wKwYDVQQDEyQz
+    YzEzZWZmNy1iY2MzLTQ4M2YtYmNiYy0yN2IzZTRkY2E4NzUwggGiMA0GCSqGSIb3
+    DQEBAQUAA4IBjwAwggGKAoIBgQC6XiTc2a5WN6ji94WfyAaaqMSkOm6vr+X8pNaN
+    aw6apd9B/d5n1LiMLxzWk0lSKdt4xxRmxFKxnjO9N2VmM/lEGeesRPK5UD4onXYC
+    cBV4OSDHuZ3IKbJurFYhJO0QlyQtfmoqWr3l6UG4vp1IUM6WuguP+NScUNAhI5xx
+    c0msI/KN29ps6wXQQSv78FXYvniuwiFAmfTvYS6qXvWwDagMaPVrbyNg+W1VJCQ+
+    ltpZswnA2IuO1H8kJCaMphgNVD9dyvsUWHybCizmLqX3QXqSEhnuFAijzOYTP4Mh
+    eVKK7Fgz2TYNK4Xe+fkmFckd3fqDb2joKYRoBPynZoyFyDt1GMGp8xKUQqEE2/HJ
+    ttNb6lbEQVAdPN+NRJjFr4XbjJUuN7JwT9CPo4jtaOXE8BYWxVk3rkmYcjSqnzLq
+    2MfGXCK/kwV0iAGkyX6WCjF535ldL4/1TA7J5szg3V0GprvfnCukwKi48QzthJjL
+    Fm2pBTo0grNL1CToycqzCaqas8ECAwEAAaNCMEAwDgYDVR0PAQH/BAQDAgIEMA8G
+    A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFKH7pks0USuuC4PcogG3IRl4pVLqMA0G
+    CSqGSIb3DQEBCwUAA4IBgQAahFDPy9MO4AQAZ62qLaMiHHiJAkHrwhYn9M28m3ND
+    2nr53FKEPbcvD+yDJ1Gtulfyc0drgsK0BaP+tSMxsq5rgkAFGbs+o8K3sw1hG3vd
+    h4fqWZchvFaWTt2dmGE/2X/QxpxKPh4pM2qRD793EjqZx3oocVdAiQF6cH4G7BYy
+    fp5ubMoKWYKi2RIICb0O2zx7rmZLXHuqMVimNuu58UlbxFMP+VsFeNiR0L9PoiAC
+    I0wHwUTmTTM4+7r6ZXRd1XcvV8we4QgZbTX3n8g4gq464qhY67zkG4Kuhurdn0Y+
+    GIs5OkjB7W+lx7l4/gYYdtMZ4l9YkSUmTc3fl4qG5MAAIf+YHznNL7WqkKuseJFl
+    VQHyC/06EmOAT/CgQgtVp9ORpZXWbyE/GN/41RH4VBbQxATy0DEq74pzvbMgfXTv
+    9fmRFr/qEbdblCkYy35AaJvFVUAER7qgmCI0avBmx0tc+40KIfl19p4mYN2NxC0h
+    LZN+c0yT9fl3+wmwlZn3WuY=
+    -----END CERTIFICATE-----
+kind: ConfigMap
+metadata:
+  annotations:
+    kubernetes.io/description: Contains a CA bundle that can be used to verify the
+      kube-apiserver when using internal endpoints such as the internal service IP
+      or kubernetes.default.svc. No other usage is guaranteed across distributions
+      of Kubernetes clusters.
+  name: kube-root-ca.crt
+  namespace: logging

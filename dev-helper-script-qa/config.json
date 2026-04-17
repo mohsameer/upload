@@ -4,12 +4,12 @@
   "EXT_AUTH_URL": "https://qa-sidas.pps.co.za/api/authn",
   "USE_CASES": [
     {
-      "NAME": "justblend-dev",
-      "CLIENT_ID": "justblend-72562105-1kl0-36rf9k0",
-      "CLIENT_SECRET": "19867a06-fba1-4dec-9791-928f364d5a16",
+      "NAME": "hpi-qa",
+      "CLIENT_ID": "hpi-qa_5477f654",
+      "CLIENT_SECRET": "9cb8260eacd20007c19f619e87ea2b7fe8059beb59350e07abdc51159c5c2269",
       "USERNAME": "cjulius",
       "PASSWORD": "Password@123",
-      "REDIRECT_URL": "https://dev-blender-pps.justapps.co.za/signin-oidc",
+      "REDIRECT_URL": "http://10.200.110.75:8080/quote/swagger-ui/oath2-redirect.html",
       "SCOPES": [
         "openid",
         "sparkle",

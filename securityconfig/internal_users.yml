@@ -1,0 +1,17 @@
+_meta:
+  type: "internalusers"
+  config_version: 2
+
+admin:
+  hash: "$2y$12$Ff8Bm1X6AYZ4kfhEdCRsIeHR6bg0GbiRrZGSA4x8TfhAL96DdEhRa"
+  reserved: true
+  backend_roles:
+    - "admin"
+  description: "Cluster admin"
+
+data-prepper:
+  hash: "$2y$12$Ff8Bm1X6AYZ4kfhEdCRsIeHR6bg0GbiRrZGSA4x8TfhAL96DdEhRa"
+  backend_roles:
+    - "data-prepper"
+  description: "Data Prepper user"
+

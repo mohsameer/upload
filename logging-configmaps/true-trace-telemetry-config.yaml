@@ -1,21 +1,41 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: true-trace-telemetry
+  namespace: logging
+  annotations:
+    argocd.argoproj.io/tracking-id: true-trace-telemetry:/ConfigMap:logging/true-trace-telemetry
 data:
   relay: |
     exporters:
       logging:
         loglevel: debug
-      otlp/data-prepper:
+
+      otlp/data-prepper-traces:
         endpoint: true-trace-prepper:21890
         tls:
           insecure: true
+
+      otlp/data-prepper-metrics:
+        endpoint: true-trace-prepper:21891
+        tls:
+          insecure: true
+
+      otlp/data-prepper-logs:
+        endpoint: true-trace-prepper:21892
+        tls:
+          insecure: true
+
     extensions:
       health_check: null
+
     processors:
       batch: null
       memory_limiter:
         check_interval: 5s
         limit_mib: 409
         spike_limit_mib: 128
+
     receivers:
       otlp:
         protocols:
@@ -24,43 +44,46 @@ data:
           http:
             cors:
               allowed_headers:
-              - '*'
+                - '*'
               allowed_origins:
-              - '*'
+                - '*'
               max_age: 7200
             endpoint: 0.0.0.0:4318
+
     service:
       extensions:
-      - health_check
+        - health_check
+
       pipelines:
         traces:
-          exporters:
-          - otlp/data-prepper
-          processors:
-          - batch
           receivers:
-          - otlp
+            - otlp
+          processors:
+            - batch
+          exporters:
+            - otlp/data-prepper-traces
+
+        metrics:
+          receivers:
+            - otlp
+          processors:
+            - batch
+          exporters:
+            - otlp/data-prepper-metrics
+
+        logs:
+          receivers:
+            - otlp
+          processors:
+            - batch
+          exporters:
+            - otlp/data-prepper-logs
+
       telemetry:
         logs:
           error_output_paths:
-          - stdout
+            - stdout
           level: debug
           output_paths:
-          - stdout
-kind: ConfigMap
-metadata:
-  annotations:
-    argocd.argoproj.io/tracking-id: true-trace-telemetry:/ConfigMap:logging/true-trace-telemetry
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","data":{"relay":"exporters:\n  logging:\n    loglevel: debug\n  otlp/data-prepper:\n    endpoint: true-trace-prepper:21890\n    tls:\n      insecure: true\nextensions:\n  health_check: null\nprocessors:\n  batch: null\n  memory_limiter:\n    check_interval: 5s\n    limit_mib: 409\n    spike_limit_mib: 128\nreceivers:\n  otlp:\n    protocols:\n      grpc:\n        endpoint: 0.0.0.0:4317\n      http:\n        cors:\n          allowed_headers:\n          - '*'\n          allowed_origins:\n          - '*'\n          max_age: 7200\n        endpoint: 0.0.0.0:4318\nservice:\n  extensions:\n  - health_check\n  pipelines:\n    traces:\n      exporters:\n      - otlp/data-prepper\n      processors:\n      - batch\n      receivers:\n      - otlp\n  telemetry:\n    logs:\n      error_output_paths:\n      - stdout\n      level: warn\n      output_paths:\n      - stdout\n"},"kind":"ConfigMap","metadata":{"annotations":{"argocd.argoproj.io/tracking-id":"true-trace-telemetry:/ConfigMap:logging/true-trace-telemetry"},"labels":{"app.kubernetes.io/instance":"true-trace-telemetry","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"true-trace-telemetry","app.kubernetes.io/version":"img.1.0.9","helm.sh/chart":"true-trace-telemetry-1.0.9-pps"},"name":"true-trace-telemetry","namespace":"logging"}}
-  creationTimestamp: "2025-12-17T12:20:43Z"
-  labels:
-    app.kubernetes.io/instance: true-trace-telemetry
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: true-trace-telemetry
-    app.kubernetes.io/version: img.1.0.9
-    helm.sh/chart: true-trace-telemetry-1.0.9-pps
-  name: true-trace-telemetry
-  namespace: logging
-  resourceVersion: "1766131739119471003"
-  uid: 076e38fe-1411-444d-a380-6730f3d78566
+            - stdout
+

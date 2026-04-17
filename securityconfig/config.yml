@@ -1,0 +1,45 @@
+_meta:
+  type: "config"
+  config_version: 2
+
+config:
+  dynamic:
+    http:
+      anonymous_auth_enabled: false
+
+    authc:
+  basic_internal_auth_domain:
+    description: Authenticate via HTTP Basic against internal users database
+    http_enabled: true
+    transport_enabled: true
+    order: 0
+    http_authenticator:
+      type: basic
+      challenge: true
+    authentication_backend:
+      type: internal
+
+  openid_auth_domain:
+    http_enabled: true
+    transport_enabled: true
+    order: 1
+    http_authenticator:
+      type: openid
+      challenge: false
+      config:
+        subject_key: sub
+        roles_key: "cognito:groups"
+        openid_connect_url: "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_Ll3NMuHQU/.well-known/openid-configuration"
+    authentication_backend:
+      type: noop
+      config: {}
+    description: Authenticate using OpenId connect
+
+    authz:
+      roles_from_internal:
+        description: "Authorize via internal roles"
+        http_enabled: true
+        transport_enabled: true
+        authorization_backend:
+          type: internal
+

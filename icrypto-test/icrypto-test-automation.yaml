@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: icrypto-test-secrets
+  namespace: default
+type: Opaque
+stringData:
+  SAID_AZ1: "9701011383183"
+  USERNAME_AZ1: "cicrypto7"
+  PASSWORD_AZ1: "Today@2025"
+  SAID_AZ2: "9404051924186"
+  USERNAME_AZ2: "vhlyp"
+  PASSWORD_AZ2: "Today@2025"
