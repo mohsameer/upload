@@ -1,0 +1,166 @@
+apiVersion: v1
+data:
+  config.yml: |-
+    ---
+    _meta:
+      type: "config"
+      config_version: 2
+
+    config:
+      dynamic:
+        http:
+          anonymous_auth_enabled: false
+          xff:
+            enabled: false
+            internalProxies: '192\.168\.0\.10|192\.168\.0\.11'
+
+        authc:
+          openid_auth_domain:
+            http_enabled: true
+            transport_enabled: true
+            order: 0
+            http_authenticator:
+              type: openid
+              challenge: false
+              config:
+                subject_key: sub
+                roles_key: "cognito:groups"
+                openid_connect_url: "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_UVWzBuUvN/.well-known/openid-configuration"
+            authentication_backend:
+              type: noop
+              config: {}
+            description: Authenticate using OpenId connect
+
+          kerberos_auth_domain:
+            http_enabled: false
+            transport_enabled: false
+            order: 6
+            http_authenticator:
+              type: kerberos
+              challenge: true
+              config:
+                krb_debug: false
+                strip_realm_from_principal: true
+            authentication_backend:
+              type: noop
+
+          basic_internal_auth_domain:
+            description: Authenticate via HTTP Basic against internal users database
+            http_enabled: true
+            transport_enabled: true
+            order: 4
+            http_authenticator:
+              type: basic
+              challenge: true
+            authentication_backend:
+              type: internal
+
+          proxy_auth_domain:
+            description: Authenticate via proxy
+            http_enabled: false
+            transport_enabled: false
+            order: 3
+            http_authenticator:
+              type: proxy
+              challenge: false
+              config:
+                user_header: "x-proxy-user"
+                roles_header: "x-proxy-roles"
+            authentication_backend:
+              type: noop
+
+          jwt_auth_domain:
+            description: Authenticate via Json Web Token
+            http_enabled: false
+            transport_enabled: false
+            order: 0
+            http_authenticator:
+              type: jwt
+              challenge: false
+              config:
+                signing_key: "base64 encoded HMAC key or public RSA/ECDSA pem key"
+                jwt_header: "Authorization"
+                jwt_url_parameter: null
+                jwt_clock_skew_tolerance_seconds: 30
+                roles_key: null
+                subject_key: null
+            authentication_backend:
+              type: noop
+
+          clientcert_auth_domain:
+            description: Authenticate via SSL client certificates
+            http_enabled: false
+            transport_enabled: false
+            order: 2
+            http_authenticator:
+              type: clientcert
+              challenge: false
+              config:
+                username_attribute: cn
+            authentication_backend:
+              type: noop
+
+          ldap:
+            description: Authenticate via LDAP or Active Directory
+            http_enabled: false
+            transport_enabled: false
+            order: 5
+            http_authenticator:
+              type: basic
+              challenge: false
+            authentication_backend:
+              type: ldap
+              config:
+                enable_ssl: false
+                enable_start_tls: false
+                enable_ssl_client_auth: false
+                verify_hostnames: true
+                hosts:
+                  - localhost:8389
+                bind_dn: null
+                password: null
+                userbase: "ou=people,dc=example,dc=com"
+                usersearch: "(sAMAccountName={0})"
+                username_attribute: null
+
+        authz:
+          roles_from_myldap:
+            description: Authorize via LDAP or Active Directory
+            http_enabled: false
+            transport_enabled: false
+            authorization_backend:
+              type: ldap
+              config:
+                enable_ssl: false
+                enable_start_tls: false
+                enable_ssl_client_auth: false
+                verify_hostnames: true
+                hosts:
+                  - localhost:8389
+                bind_dn: null
+                password: null
+                rolebase: "ou=groups,dc=example,dc=com"
+                rolesearch: "(member={0})"
+                userroleattribute: null
+                userrolename: disabled
+                rolename: cn
+                resolve_nested_roles: true
+                userbase: "ou=people,dc=example,dc=com"
+                usersearch: "(uid={0})"
+
+          roles_from_another_ldap:
+            description: Authorize via another Active Directory
+            http_enabled: false
+            transport_enabled: false
+            authorization_backend:
+              type: ldap
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"config.yml":"---\n_meta:\n  type: \"config\"\n  config_version: 2\n\nconfig:\n  dynamic:\n    http:\n      anonymous_auth_enabled: false\n      xff:\n        enabled: false\n        internalProxies: '192\\.168\\.0\\.10|192\\.168\\.0\\.11'\n\n    authc:\n      openid_auth_domain:\n        http_enabled: true\n        transport_enabled: true\n        order: 0\n        http_authenticator:\n          type: openid\n          challenge: false\n          config:\n            subject_key: sub\n            roles_key: \"cognito:groups\"\n            openid_connect_url: \"https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_Ll3NMuHQU/.well-known/openid-configuration\"\n        authentication_backend:\n          type: noop\n          config: {}\n        description: Authenticate using OpenId connect\n\n      kerberos_auth_domain:\n        http_enabled: false\n        transport_enabled: false\n        order: 6\n        http_authenticator:\n          type: kerberos\n          challenge: true\n          config:\n            krb_debug: false\n            strip_realm_from_principal: true\n        authentication_backend:\n          type: noop\n\n      basic_internal_auth_domain:\n        description: Authenticate via HTTP Basic against internal users database\n        http_enabled: true\n        transport_enabled: true\n        order: 4\n        http_authenticator:\n          type: basic\n          challenge: true\n        authentication_backend:\n          type: internal\n\n      proxy_auth_domain:\n        description: Authenticate via proxy\n        http_enabled: false\n        transport_enabled: false\n        order: 3\n        http_authenticator:\n          type: proxy\n          challenge: false\n          config:\n            user_header: \"x-proxy-user\"\n            roles_header: \"x-proxy-roles\"\n        authentication_backend:\n          type: noop\n\n      jwt_auth_domain:\n        description: Authenticate via Json Web Token\n        http_enabled: false\n        transport_enabled: false\n        order: 0\n        http_authenticator:\n          type: jwt\n          challenge: false\n          config:\n            signing_key: \"base64 encoded HMAC key or public RSA/ECDSA pem key\"\n            jwt_header: \"Authorization\"\n            jwt_url_parameter: null\n            jwt_clock_skew_tolerance_seconds: 30\n            roles_key: null\n            subject_key: null\n        authentication_backend:\n          type: noop\n\n      clientcert_auth_domain:\n        description: Authenticate via SSL client certificates\n        http_enabled: false\n        transport_enabled: false\n        order: 2\n        http_authenticator:\n          type: clientcert\n          challenge: false\n          config:\n            username_attribute: cn\n        authentication_backend:\n          type: noop\n\n      ldap:\n        description: Authenticate via LDAP or Active Directory\n        http_enabled: false\n        transport_enabled: false\n        order: 5\n        http_authenticator:\n          type: basic\n          challenge: false\n        authentication_backend:\n          type: ldap\n          config:\n            enable_ssl: false\n            enable_start_tls: false\n            enable_ssl_client_auth: false\n            verify_hostnames: true\n            hosts:\n              - localhost:8389\n            bind_dn: null\n            password: null\n            userbase: \"ou=people,dc=example,dc=com\"\n            usersearch: \"(sAMAccountName={0})\"\n            username_attribute: null\n\n    authz:\n      roles_from_myldap:\n        description: Authorize via LDAP or Active Directory\n        http_enabled: false\n        transport_enabled: false\n        authorization_backend:\n          type: ldap\n          config:\n            enable_ssl: false\n            enable_start_tls: false\n            enable_ssl_client_auth: false\n            verify_hostnames: true\n            hosts:\n              - localhost:8389\n            bind_dn: null\n            password: null\n            rolebase: \"ou=groups,dc=example,dc=com\"\n            rolesearch: \"(member={0})\"\n            userroleattribute: null\n            userrolename: disabled\n            rolename: cn\n            resolve_nested_roles: true\n            userbase: \"ou=people,dc=example,dc=com\"\n            usersearch: \"(uid={0})\"\n\n      roles_from_another_ldap:\n        description: Authorize via another Active Directory\n        http_enabled: false\n        transport_enabled: false\n        authorization_backend:\n          type: ldap"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2025-09-22T19:45:09Z","name":"opensearch-security-config","namespace":"logging","resourceVersion":"638511860","uid":"fe5cbac7-4e12-4d64-80f1-67191b0d53ca"}}
+  creationTimestamp: "2025-09-24T08:47:40Z"
+  name: opensearch-security-config
+  namespace: logging
+  resourceVersion: "640196347"
+  uid: afec5dde-bce2-4cb6-897f-3cb4ed3a924c

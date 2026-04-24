@@ -17,9 +17,9 @@ data:
 kind: ConfigMap
 metadata:
   annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
     meta.helm.sh/release-name: opensearch-dashboard
     meta.helm.sh/release-namespace: logging
+  creationTimestamp: "2025-08-20T10:38:20Z"
   labels:
     app.kubernetes.io/instance: opensearch-dashboard
     app.kubernetes.io/managed-by: Helm
@@ -28,3 +28,5 @@ metadata:
     helm.sh/chart: opensearch-dashboards-2.5.0
   name: opensearch-dashboard-opensearch-dashboards-config
   namespace: logging
+  resourceVersion: "602182180"
+  uid: 9ed2f7d5-bc4d-4473-8b7a-8f0189be6e01

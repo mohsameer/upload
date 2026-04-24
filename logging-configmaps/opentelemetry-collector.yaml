@@ -1,0 +1,102 @@
+apiVersion: v1
+data:
+  relay: |
+    exporters:
+      logging:
+        loglevel: info
+      otlp/data-prepper:
+        endpoint: true-trace-prepper:21890
+        tls:
+          insecure: true
+    extensions:
+      health_check: {}
+      memory_ballast: {}
+    processors:
+      batch:
+        send_batch_size: 8192
+        timeout: 5s
+      memory_limiter:
+        check_interval: 5s
+        limit_mib: 409
+        spike_limit_mib: 128
+    receivers:
+      jaeger:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:14250
+          thrift_compact:
+            endpoint: 0.0.0.0:6831
+          thrift_http:
+            endpoint: 0.0.0.0:14268
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            cors:
+              allowed_headers:
+              - '*'
+              allowed_origins:
+              - '*'
+              max_age: 7200
+            endpoint: 0.0.0.0:4318
+      prometheus:
+        config:
+          scrape_configs:
+          - job_name: opentelemetry-collector
+            scrape_interval: 10s
+            static_configs:
+            - targets:
+              - ${MY_POD_IP}:8888
+      zipkin:
+        endpoint: 0.0.0.0:9411
+    service:
+      extensions:
+      - health_check
+      pipelines:
+        logs:
+          exporters:
+          - logging
+          processors:
+          - memory_limiter
+          - batch
+          receivers:
+          - otlp
+        metrics:
+          exporters:
+          - logging
+          processors:
+          - memory_limiter
+          - batch
+          receivers:
+          - otlp
+          - prometheus
+        traces:
+          exporters:
+          - otlp/data-prepper
+          processors:
+          - batch
+          receivers:
+          - otlp
+      telemetry:
+        logs:
+          error_output_paths:
+          - stdout
+          level: warn
+          output_paths:
+          - stdout
+        metrics:
+          address: 0.0.0.0:8888
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: opentelemetry-collector
+    meta.helm.sh/release-namespace: logging
+  labels:
+    app.kubernetes.io/instance: opentelemetry-collector
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: opentelemetry-collector
+    app.kubernetes.io/version: 0.62.1
+    helm.sh/chart: opentelemetry-collector-0.36.1
+  name: opentelemetry-collector
+  namespace: logging

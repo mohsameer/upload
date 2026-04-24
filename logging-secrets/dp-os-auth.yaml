@@ -6,10 +6,6 @@ kind: Secret
 metadata:
   annotations:
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","data":{"OS_PASSWORD":"RHAtMjAyNSFUcmFjZSNBMSRNb3Jl","OS_USERNAME":"ZGF0YXByZXBwZXI="},"kind":"Secret","metadata":{"annotations":{},"creationTimestamp":null,"name":"dp-os-auth","namespace":"logging"}}
-  creationTimestamp: "2025-08-22T11:52:35Z"
   name: dp-os-auth
   namespace: logging
-  resourceVersion: "604430164"
-  uid: a83b75be-c071-481a-89ac-d2fb5037795f
 type: Opaque
