@@ -1,0 +1,28 @@
+apiVersion: v1
+data:
+  fluent.conf: |-
+    # do not collect fluentd logs to avoid infinite loops.
+    <label @FLUENT_LOG>
+      <match **>
+        @type null
+        @id ignore_fluent_logs
+      </match>
+    </label>
+
+    @include config.d/*.conf
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"fluent.conf":"# do not collect fluentd logs to avoid infinite loops.\n\u003clabel @FLUENT_LOG\u003e\n  \u003cmatch **\u003e\n    @type null\n    @id ignore_fluent_logs\n  \u003c/match\u003e\n\u003c/label\u003e\n\n@include config.d/*.conf"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"true-trace-fluentd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"true-trace-fluentd","app.kubernetes.io/version":"img.1.0.7","helm.sh/chart":"true-trace-fluentd-1.0.7-pps"},"name":"fluentd-main-true-trace-fluentd","namespace":"logging"}}
+  creationTimestamp: "2026-01-09T09:28:42Z"
+  labels:
+    app.kubernetes.io/instance: true-trace-fluentd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: true-trace-fluentd
+    app.kubernetes.io/version: img.1.0.7
+    helm.sh/chart: true-trace-fluentd-1.0.7-pps
+  name: fluentd-main-true-trace-fluentd
+  namespace: logging
+  resourceVersion: "1770635437788399000"
+  uid: 8f686b32-1d05-4e92-b7d5-e327bce1770e

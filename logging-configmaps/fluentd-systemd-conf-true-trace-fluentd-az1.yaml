@@ -1,0 +1,94 @@
+apiVersion: v1
+data:
+  systemd.conf: |-
+    <source>
+      @type systemd
+      @id in_systemd_internal_kubernetes
+      @label @KUBERNETES_SYSTEM
+      matches [{"_SYSTEMD_UNIT":"kubelet.service"},{"_SYSTEMD_UNIT":"kube-apiserver.service"},{"_SYSTEMD_UNIT":"kube-controller-manager.service"},{"_SYSTEMD_UNIT":"kube-proxy.service"},{"_SYSTEMD_UNIT":"kube-scheduler.service"}]
+      read_from_head true
+      tag "internal-kubernetes.systemd"
+      <storage>
+        @type "local"
+        persistent true
+        path "/var/log/fluentd-journald-internal_kubernetes-cursor.json"
+      </storage>
+      <entry>
+        fields_strip_underscores true
+        field_map {"MESSAGE": "message", "_TRANSPORT": "stream", "_SYSTEMD_UNIT": "systemd_unit", "_HOSTNAME": "hostname"}
+        field_map_strict true
+      </entry>
+    </source>
+
+    <source>
+      @type systemd
+      @id in_systemd_etcd
+      @label @KUBERNETES_SYSTEM
+      matches [{"_SYSTEMD_UNIT":"etcd.service"}]
+      read_from_head true
+      tag "etcd.systemd"
+      <storage>
+        @type "local"
+        persistent true
+        path "/var/log/fluentd-journald-internal_etcd-cursor.json"
+      </storage>
+      <entry>
+        fields_strip_underscores true
+        field_map {"MESSAGE": "message", "_TRANSPORT": "stream", "_SYSTEMD_UNIT": "systemd_unit", "_HOSTNAME": "hostname"}
+        field_map_strict true
+      </entry>
+    </source>
+
+    <label @KUBERNETES_SYSTEM>
+      <filter internal-kubernetes.systemd>
+        @type parser
+        key_name message
+        <parse>
+          @type regexp
+          expression /^(?<level>[a-zA-Z])[0-9]* ([\d:.]+)\s+\d+ (?<file>[a-zA-Z-_.]+):(?<line>[\d]+)\]\s+(?<log>.*)$/
+        </parse>
+        reserve_data true
+        reserve_time true
+      </filter>
+
+      <filter etcd.systemd>
+        @type parser
+        key_name message
+        <parse>
+          @type regexp
+          expression /^([^ ]+\s[^ ]+) (?<level>[A-Z]) \| (?<component>[a-zA-Z-_.]+): (?<log>.*)$/
+        </parse>
+        reserve_data true
+        reserve_time true
+      </filter>
+
+      <filter **>
+        @type record_transformer
+        enable_ruby
+        <record>
+          raw ${record["message"]}
+        </record>
+        remove_keys message
+      </filter>
+
+      <match **>
+        @type relabel
+        @label @DISPATCH
+      </match>
+    </label>
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"systemd.conf":"\u003csource\u003e\n  @type systemd\n  @id in_systemd_internal_kubernetes\n  @label @KUBERNETES_SYSTEM\n  matches [{\"_SYSTEMD_UNIT\":\"kubelet.service\"},{\"_SYSTEMD_UNIT\":\"kube-apiserver.service\"},{\"_SYSTEMD_UNIT\":\"kube-controller-manager.service\"},{\"_SYSTEMD_UNIT\":\"kube-proxy.service\"},{\"_SYSTEMD_UNIT\":\"kube-scheduler.service\"}]\n  read_from_head true\n  tag \"internal-kubernetes.systemd\"\n  \u003cstorage\u003e\n    @type \"local\"\n    persistent true\n    path \"/var/log/fluentd-journald-internal_kubernetes-cursor.json\"\n  \u003c/storage\u003e\n  \u003centry\u003e\n    fields_strip_underscores true\n    field_map {\"MESSAGE\": \"message\", \"_TRANSPORT\": \"stream\", \"_SYSTEMD_UNIT\": \"systemd_unit\", \"_HOSTNAME\": \"hostname\"}\n    field_map_strict true\n  \u003c/entry\u003e\n\u003c/source\u003e\n\n\u003csource\u003e\n  @type systemd\n  @id in_systemd_etcd\n  @label @KUBERNETES_SYSTEM\n  matches [{\"_SYSTEMD_UNIT\":\"etcd.service\"}]\n  read_from_head true\n  tag \"etcd.systemd\"\n  \u003cstorage\u003e\n    @type \"local\"\n    persistent true\n    path \"/var/log/fluentd-journald-internal_etcd-cursor.json\"\n  \u003c/storage\u003e\n  \u003centry\u003e\n    fields_strip_underscores true\n    field_map {\"MESSAGE\": \"message\", \"_TRANSPORT\": \"stream\", \"_SYSTEMD_UNIT\": \"systemd_unit\", \"_HOSTNAME\": \"hostname\"}\n    field_map_strict true\n  \u003c/entry\u003e\n\u003c/source\u003e\n\n\u003clabel @KUBERNETES_SYSTEM\u003e\n  \u003cfilter internal-kubernetes.systemd\u003e\n    @type parser\n    key_name message\n    \u003cparse\u003e\n      @type regexp\n      expression /^(?\u003clevel\u003e[a-zA-Z])[0-9]* ([\\d:.]+)\\s+\\d+ (?\u003cfile\u003e[a-zA-Z-_.]+):(?\u003cline\u003e[\\d]+)\\]\\s+(?\u003clog\u003e.*)$/\n    \u003c/parse\u003e\n    reserve_data true\n    reserve_time true\n  \u003c/filter\u003e\n\n  \u003cfilter etcd.systemd\u003e\n    @type parser\n    key_name message\n    \u003cparse\u003e\n      @type regexp\n      expression /^([^ ]+\\s[^ ]+) (?\u003clevel\u003e[A-Z]) \\| (?\u003ccomponent\u003e[a-zA-Z-_.]+): (?\u003clog\u003e.*)$/\n    \u003c/parse\u003e\n    reserve_data true\n    reserve_time true\n  \u003c/filter\u003e\n\n  \u003cfilter **\u003e\n    @type record_transformer\n    enable_ruby\n    \u003crecord\u003e\n      raw ${record[\"message\"]}\n    \u003c/record\u003e\n    remove_keys message\n  \u003c/filter\u003e\n\n  \u003cmatch **\u003e\n    @type relabel\n    @label @DISPATCH\n  \u003c/match\u003e\n\u003c/label\u003e"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"true-trace-fluentd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"true-trace-fluentd","app.kubernetes.io/version":"img.1.0.7","helm.sh/chart":"true-trace-fluentd-1.0.7-pps"},"name":"fluentd-systemd-conf-true-trace-fluentd","namespace":"logging"}}
+  creationTimestamp: "2026-01-09T09:28:42Z"
+  labels:
+    app.kubernetes.io/instance: true-trace-fluentd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: true-trace-fluentd
+    app.kubernetes.io/version: img.1.0.7
+    helm.sh/chart: true-trace-fluentd-1.0.7-pps
+  name: fluentd-systemd-conf-true-trace-fluentd
+  namespace: logging
+  resourceVersion: "1770635437786447023"
+  uid: 250a60bb-eac6-4478-9f94-afc115cde6d4

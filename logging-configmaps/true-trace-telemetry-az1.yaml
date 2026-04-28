@@ -1,0 +1,60 @@
+apiVersion: v1
+data:
+  relay: |
+    exporters:
+      logging:
+        loglevel: debug
+      otlp/data-prepper:
+        endpoint: true-trace-prepper:21890
+        tls:
+          insecure: true
+    extensions:
+      health_check: null
+    processors:
+      batch: null
+      memory_limiter:
+        check_interval: 5s
+        limit_mib: 409
+        spike_limit_mib: 128
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            cors:
+              allowed_headers:
+              - '*'
+              allowed_origins:
+              - '*'
+              max_age: 7200
+            endpoint: 0.0.0.0:4318
+    service:
+      extensions:
+      - health_check
+      pipelines:
+        traces:
+          exporters:
+          - otlp/data-prepper
+          processors:
+          - batch
+          receivers:
+          - otlp
+      telemetry:
+        logs:
+          error_output_paths:
+          - stdout
+          level: debug
+          output_paths:
+          - stdout
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: true-trace-telemetry:/ConfigMap:logging/true-trace-telemetry
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"relay":"exporters:\n  logging:\n    loglevel: debug\n\n  otlp/data-prepper-traces:\n    endpoint: true-trace-prepper:21890\n    tls:\n      insecure: true\n\n  otlp/data-prepper-metrics:\n    endpoint: true-trace-prepper:21891\n    tls:\n      insecure: true\n\n  otlp/data-prepper-logs:\n    endpoint: true-trace-prepper:21892\n    tls:\n      insecure: true\n\nextensions:\n  health_check: null\n\nprocessors:\n  batch: null\n  memory_limiter:\n    check_interval: 5s\n    limit_mib: 409\n    spike_limit_mib: 128\n\nreceivers:\n  otlp:\n    protocols:\n      grpc:\n        endpoint: 0.0.0.0:4317\n      http:\n        cors:\n          allowed_headers:\n            - '*'\n          allowed_origins:\n            - '*'\n          max_age: 7200\n        endpoint: 0.0.0.0:4318\n\nservice:\n  extensions:\n    - health_check\n\n  pipelines:\n    traces:\n      receivers:\n        - otlp\n      processors:\n        - batch\n      exporters:\n        - otlp/data-prepper-traces\n\n    metrics:\n      receivers:\n        - otlp\n      processors:\n        - batch\n      exporters:\n        - otlp/data-prepper-metrics\n\n    logs:\n      receivers:\n        - otlp\n      processors:\n        - batch\n      exporters:\n        - otlp/data-prepper-logs\n\n  telemetry:\n    logs:\n      error_output_paths:\n        - stdout\n      level: debug\n      output_paths:\n        - stdout\n"},"kind":"ConfigMap","metadata":{"annotations":{"argocd.argoproj.io/tracking-id":"true-trace-telemetry:/ConfigMap:logging/true-trace-telemetry"},"name":"true-trace-telemetry","namespace":"logging"}}
+  creationTimestamp: "2026-01-07T13:49:51Z"
+  name: true-trace-telemetry
+  namespace: logging
+  resourceVersion: "1770714757148447003"
+  uid: 1580a6bc-879a-44b9-91c8-2fccfa61a52e

@@ -1,0 +1,36 @@
+apiVersion: v1
+data:
+  prometheus.conf: |-
+    <source>
+      @type prometheus
+      @id in_prometheus
+      bind "0.0.0.0"
+      port 24231
+      metrics_path "/metrics"
+    </source>
+
+    <source>
+      @type prometheus_monitor
+      @id in_prometheus_monitor
+    </source>
+
+    <source>
+      @type prometheus_output_monitor
+      @id in_prometheus_output_monitor
+    </source>
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"prometheus.conf":"\u003csource\u003e\n  @type prometheus\n  @id in_prometheus\n  bind \"0.0.0.0\"\n  port 24231\n  metrics_path \"/metrics\"\n\u003c/source\u003e\n\n\u003csource\u003e\n  @type prometheus_monitor\n  @id in_prometheus_monitor\n\u003c/source\u003e\n\n\u003csource\u003e\n  @type prometheus_output_monitor\n  @id in_prometheus_output_monitor\n\u003c/source\u003e"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"true-trace-fluentd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"true-trace-fluentd","app.kubernetes.io/version":"img.1.0.7","helm.sh/chart":"true-trace-fluentd-1.0.7-pps"},"name":"fluentd-prometheus-conf-true-trace-fluentd","namespace":"logging"}}
+  creationTimestamp: "2026-01-09T09:28:42Z"
+  labels:
+    app.kubernetes.io/instance: true-trace-fluentd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: true-trace-fluentd
+    app.kubernetes.io/version: img.1.0.7
+    helm.sh/chart: true-trace-fluentd-1.0.7-pps
+  name: fluentd-prometheus-conf-true-trace-fluentd
+  namespace: logging
+  resourceVersion: "1770635437788015019"
+  uid: c6f0c491-0f85-4f55-8833-803bd726e372

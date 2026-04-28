@@ -1,0 +1,61 @@
+apiVersion: v1
+data:
+  data-prepper-config.yaml: |
+    ssl: false
+  log4j2-rolling.properties: |
+    #
+    # Copyright OpenSearch Contributors
+    # SPDX-License-Identifier: Apache-2.0
+    #
+
+    status = error
+    dest = err
+    name = PropertiesConfig
+
+    property.filename = log/data-prepper/data-prepper.log
+
+    appender.console.type = Console
+    appender.console.name = STDOUT
+    appender.console.layout.type = PatternLayout
+    appender.console.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n
+
+    appender.rolling.type = RollingFile
+    appender.rolling.name = RollingFile
+    appender.rolling.fileName = ${filename}
+    appender.rolling.filePattern = logs/data-prepper.log.%d{MM-dd-yy-HH}-%i.gz
+    appender.rolling.layout.type = PatternLayout
+    appender.rolling.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n
+    appender.rolling.policies.type = Policies
+    appender.rolling.policies.time.type = TimeBasedTriggeringPolicy
+    appender.rolling.policies.time.interval = 1
+    appender.rolling.policies.time.modulate = true
+    appender.rolling.policies.size.type = SizeBasedTriggeringPolicy
+    appender.rolling.policies.size.size=100MB
+    appender.rolling.strategy.type = DefaultRolloverStrategy
+    appender.rolling.strategy.max = 168
+
+    rootLogger.level = warn
+    rootLogger.appenderRef.stdout.ref = STDOUT
+    rootLogger.appenderRef.file.ref = RollingFile
+
+    logger.pipeline.name = org.opensearch.dataprepper.pipeline
+    logger.pipeline.level = info
+
+    logger.parser.name = org.opensearch.dataprepper.parser
+    logger.parser.level = info
+
+    logger.plugins.name = org.opensearch.dataprepper.plugins
+    logger.plugins.level = info
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-02-25T09:43:26Z"
+  labels:
+    app.kubernetes.io/instance: true-trace-prepper
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: true-trace-prepper
+    app.kubernetes.io/version: img.1.0.27
+    helm.sh/chart: true-trace-prepper-1.0.27-pps
+  name: true-trace-prepper-config
+  namespace: logging
+  resourceVersion: "1772012606593279016"
+  uid: 081b1e29-da4a-4a65-8955-4d467f99cff3
