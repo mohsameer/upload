@@ -1,0 +1,61 @@
+apiVersion: v1
+data:
+  relay: |
+    exporters:
+      logging:
+        loglevel: debug
+      otlp/data-prepper:
+        endpoint: true-trace-prepper:21890
+        tls:
+          insecure: true
+    extensions:
+      health_check: null
+    processors:
+      batch: null
+      memory_limiter:
+        check_interval: 5s
+        limit_mib: 409
+        spike_limit_mib: 128
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            cors:
+              allowed_headers:
+              - '*'
+              allowed_origins:
+              - '*'
+              max_age: 7200
+            endpoint: 0.0.0.0:4318
+    service:
+      extensions:
+      - health_check
+      pipelines:
+        traces:
+          exporters:
+          - otlp/data-prepper
+          processors:
+          - batch
+          receivers:
+          - otlp
+      telemetry:
+        logs:
+          error_output_paths:
+          - stdout
+          level: warn
+          output_paths:
+          - stdout
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: true-trace-telemetry:/ConfigMap:logging/true-trace-telemetry
+  labels:
+    app.kubernetes.io/instance: true-trace-telemetry
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: true-trace-telemetry
+    app.kubernetes.io/version: img.1.0.9
+    helm.sh/chart: true-trace-telemetry-1.0.9-pps
+  name: true-trace-telemetry
+  namespace: logging
